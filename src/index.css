@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cameroon flag variables and global background to match presentation */
+:root {
+  --flag-green: #007A5E;
+  --flag-red: #CE1126;
+  --flag-yellow: #FCD116;
+  --bg-gradient: linear-gradient(90deg, var(--flag-green) 0%, var(--flag-yellow) 50%, var(--flag-red) 100%);
+  --app-text: #111827;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg-gradient);
+  color: var(--app-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* small starfield for subtle animated background */
+.starfield {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.starfield .star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--flag-yellow);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: twinkle 3s infinite ease-in-out;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.6); }
+}
+
+@keyframes float-star {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-15px) rotate(90deg); }
+  50% { transform: translateY(0) rotate(180deg); }
+  75% { transform: translateY(15px) rotate(270deg); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(255,215,0,0.4)); }
+  50% { filter: drop-shadow(0 0 20px rgba(255,215,0,0.8)); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-delay {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up-delay {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce-in {
+  0% { opacity: 0; transform: scale(0.3); }
+  50% { opacity: 1; transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes flag-wave {
+  0%, 100% { transform: scaleX(1); }
+  25% { transform: scaleX(1.02); }
+  75% { transform: scaleX(0.98); }
+}
+
+@keyframes card-hover-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(252,209,22,0); }
+  50% { box-shadow: 0 0 20px 4px rgba(252,209,22,0.15); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  50% { transform: scale(1.05); opacity: 0.3; }
+  100% { transform: scale(0.95); opacity: 0.7; }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float-star {
+  animation: float-star 6s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.animate-fade-in-delay {
+  opacity: 0;
+  animation: fade-in-delay 0.6s ease-out 0.2s forwards;
+}
+
+.animate-slide-up {
+  opacity: 0;
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+.animate-slide-up-delay {
+  opacity: 0;
+  animation: slide-up-delay 0.5s ease-out 0.3s forwards;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.6s ease-out forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(252,209,22,0.3), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-flag-wave {
+  animation: flag-wave 3s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+.animate-card-glow {
+  animation: card-hover-glow 3s ease-in-out infinite;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s ease-out forwards;
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+.animate-float-y {
+  animation: float-y 3s ease-in-out infinite;
+}
+
+/* Cameroon flag stripe on hover */
+.cameroon-stripe-hover:hover {
+  border-image: linear-gradient(to right, #007A5E, #CE1126, #FCD116) 1;
+}
+
+/* Custom scrollbar with Cameroon colors */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #007A5E, #CE1126, #FCD116);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #00A86B, #E63946, #FFD700);
+}
