@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Camera, Upload, Heart, Play, Video, Star, X, MapPin, Eye, ZoomIn, Sparkles } from 'lucide-react';
 import { CameroonStar } from '../../shared/components';
 import { useTranslation } from '../../shared/hooks';
@@ -26,6 +26,28 @@ export function SpotboardGallery({
   const t = useTranslation(language);
   const [selectedPhoto, setSelectedPhoto] = useState<SpotboardPhoto | null>(null);
   const [playingVideo, setPlayingVideo] = useState<string | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const DEFAULT_CAMEROON_IMAGES = [
+    'https://source.unsplash.com/800x600/?cameroon,yaounde',
+    'https://source.unsplash.com/800x600/?cameroon,douala',
+    'https://source.unsplash.com/800x600/?mount%20cameroon',
+    'https://source.unsplash.com/800x600/?kribi,beach',
+    'https://source.unsplash.com/800x600/?waza,park',
+    'https://source.unsplash.com/800x600/?cameroon,mountain',
+  ];
+
+  useEffect(() => {
+    if (videoRef.current && playingVideo) {
+      try {
+        videoRef.current.playbackRate = 1.1;
+        // attempt to play in case autoplay restrictions exist
+        videoRef.current.play().catch(() => {});
+      } catch (e) {
+        // ignore
+      }
+    }
+  }, [playingVideo]);
 
   const photoCount = photos.filter(p => !p.caption?.startsWith('video:')).length;
   const videoCount = photos.filter(p => p.caption?.startsWith('video:')).length;
@@ -93,10 +115,15 @@ export function SpotboardGallery({
         )}
 
         {!loading && photos.length === 0 ? (
-          <div className="text-center py-20 bg-white rounded-3xl border border-gray-100 animate-bounce-in">
-            <Camera size={64} className="mx-auto text-gray-300 mb-4" />
-            <p className="text-gray-500 text-lg font-semibold">{t('noPhotos')}</p>
-            <CameroonStar size={32} className="mx-auto mt-4 animate-pulse" />
+          <div className="py-8">
+            <p className="text-gray-500 text-lg font-semibold text-center mb-6">{t('noPhotos')}</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {DEFAULT_CAMEROON_IMAGES.map((src, i) => (
+                <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg">
+                  <img src={src} alt={`Cameroon ${i}`} className="w-full h-48 object-cover" />
+                </div>
+              ))}
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -217,10 +244,13 @@ export function SpotboardGallery({
                 selectedPhoto.caption?.startsWith('video:') ? (
                   playingVideo === selectedPhoto.id ? (
                     <video
+                      ref={videoRef}
                       src={selectedPhoto.url}
                       className="w-full max-h-[70vh] object-contain bg-black"
                       controls
                       playsInline
+                      preload="auto"
+                      muted={false}
                     />
                   ) : (
                     <div className="relative">

@@ -33,6 +33,32 @@ interface Comment {
 // Cameroun photos from Pexels + international travel photos
 const TRAVEL_PHOTOS: TravelPhoto[] = [
   {
+    id: 'm1',
+    url: 'https://source.unsplash.com/1200x800/?mount%20cameroon',
+    thumbnail: 'https://source.unsplash.com/400x300/?mount%20cameroon',
+    title: 'Mount Cameroon',
+    location: 'Mount Cameroon, Cameroun',
+    photographer: 'Local Photographer',
+    avatar: 'MC',
+    likes: 8421,
+    views: 45200,
+    category: 'montagne',
+    width: 1200, height: 800,
+  },
+  {
+    id: 'm2',
+    url: 'https://source.unsplash.com/1200x800/?cameroon,landscape',
+    thumbnail: 'https://source.unsplash.com/400x300/?cameroon,landscape',
+    title: 'Cameroon Highlands',
+    location: 'Bamboutos, Cameroun',
+    photographer: 'Local Photographer',
+    avatar: 'BH',
+    likes: 6320,
+    views: 29800,
+    category: 'montagne',
+    width: 1200, height: 800,
+  },
+  {
     id: '1',
     url: 'https://images.pexels.com/photos/5833873/pexels-photo-5833873.jpeg?auto=compress&cs=tinysrgb&w=1200',
     thumbnail: 'https://images.pexels.com/photos/5833873/pexels-photo-5833873.jpeg?auto=compress&cs=tinysrgb&w=400',
@@ -383,7 +409,7 @@ export function TravelPhotosGallery({ language, onBack }: TravelPhotosGalleryPro
               {t('gallery') || 'Galerie de Voyage'}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 font-semibold max-w-2xl mx-auto drop-shadow-lg">
-              Decouvrez les plus belles destinations du monde et du Cameroun
+              {t('gallerySubtitle') || 'Decouvrez les plus belles destinations du monde et du Cameroun'}
             </p>
           </div>
 

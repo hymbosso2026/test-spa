@@ -14,10 +14,16 @@ export const useAuth = () => {
     setLoading(true);
     setError('');
     try {
-      const { data: authData, error: authError } = await supabase.auth.signUp({
-        email,
-        password,
-      });
+      const redirectUrl = `${window.location.origin}/`;
+      const { data: authData, error: authError } = await supabase.auth.signUp(
+        {
+          email,
+          password,
+        },
+        {
+          emailRedirectTo: redirectUrl,
+        }
+      );
 
       if (authError) throw authError;
 

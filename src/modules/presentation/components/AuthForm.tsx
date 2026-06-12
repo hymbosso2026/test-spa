@@ -132,7 +132,7 @@ export function AuthForm({
 
             {error && (
               <div className={`p-4 rounded-xl text-sm font-bold animate-bounce-in ${
-                error === t('accountCreated')
+                error === t('accountCreated') || error === t('checkEmailToConfirm')
                   ? 'bg-[#007A5E]/10 text-[#007A5E]'
                   : 'bg-[#CE1126]/10 text-[#CE1126]'
               }`}>

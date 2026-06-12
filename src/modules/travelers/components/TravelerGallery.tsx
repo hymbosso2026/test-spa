@@ -31,6 +31,15 @@ const COVER_IMAGES = [
   'https://images.pexels.com/photos/3155667/pexels-photo-3155667.jpeg?auto=compress&cs=tinysrgb&w=600',
 ];
 
+const DEFAULT_CAM_IMAGES = [
+  'https://source.unsplash.com/800x600/?yaounde,cameroon',
+  'https://source.unsplash.com/800x600/?douala,cameroon',
+  'https://source.unsplash.com/800x600/?kribi,cameroon',
+  'https://source.unsplash.com/800x600/?mount%20cameroon',
+  'https://source.unsplash.com/800x600/?waza%20national%20park',
+  'https://source.unsplash.com/800x600/?bamenda,cameroon',
+];
+
 function getCoverImage(userId: string): string {
   let hash = 0;
   for (let i = 0; i < userId.length; i++) {
@@ -87,9 +96,15 @@ export function TravelerGallery({ language, travels, onViewTraveler }: TravelerG
         </p>
 
         {travelers.length === 0 ? (
-          <div className="text-center py-20 bg-white rounded-3xl border border-gray-100 animate-bounce-in">
-            <Users size={64} className="mx-auto text-gray-300 mb-4" />
-            <p className="text-gray-500 text-lg font-semibold">{t('noTravels')}</p>
+          <div className="py-8">
+            <p className="text-gray-500 text-lg font-semibold text-center mb-6">{t('noTravels')}</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {DEFAULT_CAM_IMAGES.map((src, i) => (
+                <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg">
+                  <img src={src} alt={`Cameroon ${i}`} className="w-full h-56 object-cover" />
+                </div>
+              ))}
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

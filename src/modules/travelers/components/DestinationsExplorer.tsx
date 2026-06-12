@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { MapPin, Plane, Calendar, Heart, Eye, ArrowRight, X, Star, Compass, Thermometer, Clock, Cloud, ChevronLeft, ChevronRight, Bookmark, Share2, Send, MessageCircle, ThumbsUp, Clock3, Globe, Sparkles } from 'lucide-react';
 import { CameroonStar } from '../../shared/components';
 import { useTranslation } from '../../shared/hooks';
@@ -274,6 +274,8 @@ export function DestinationsExplorer({ language, onBack }: DestinationsExplorerP
   const [activeTab, setActiveTab] = useState<'all' | 'cameroon'>('all');
   const scrollRef = useRef<HTMLDivElement>(null);
   const reviewInputRef = useRef<HTMLTextAreaElement>(null);
+  const heroVideoRef = useRef<HTMLVideoElement | null>(null);
+  const modalVideoRef = useRef<HTMLVideoElement | null>(null);
 
   const filteredDestinations = activeTab === 'all'
     ? DESTINATIONS
@@ -335,12 +337,35 @@ export function DestinationsExplorer({ language, onBack }: DestinationsExplorerP
     }
   };
 
+  useEffect(() => {
+    if (heroVideoRef.current) {
+      try {
+        heroVideoRef.current.playbackRate = 1.05;
+        heroVideoRef.current.play().catch(() => {});
+      } catch (e) {}
+    }
+  }, []);
+
+  useEffect(() => {
+    if (modalVideoRef.current) {
+      try {
+        modalVideoRef.current.playbackRate = 1.05;
+        modalVideoRef.current.play().catch(() => {});
+      } catch (e) {}
+    }
+  }, [selectedDest]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#007A5E]/5 via-white to-[#FCD116]/5">
       {/* Hero Section with Video */}
       <div className="relative h-[70vh] min-h-[500px] overflow-hidden">
         <video
+          ref={heroVideoRef}
+          autoPlay
           controls
+          muted
+          preload="auto"
+          crossOrigin="anonymous"
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
@@ -358,10 +383,10 @@ export function DestinationsExplorer({ language, onBack }: DestinationsExplorerP
               <Compass size={36} className="text-[#FCD116] animate-float-y" style={{ animationDelay: '0.6s' }} />
             </div>
             <h1 className="text-5xl md:text-7xl font-black text-white drop-shadow-2xl mb-4">
-              Explorez le Monde
+              {t('exploreTitle')}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 font-semibold max-w-2xl mx-auto drop-shadow-lg">
-              Du Cameroun aux quatre coins du globe, decouvrez, revez, partez.
+              {t('exploreSubtitle')}
             </p>
           </div>
           <div className="flex items-center gap-8 mt-10 animate-fade-in-delay">
@@ -595,7 +620,10 @@ export function DestinationsExplorer({ language, onBack }: DestinationsExplorerP
             {/* Video Hero */}
             <div className="relative h-64 md:h-80">
               <video
+                ref={modalVideoRef}
                 controls
+                preload="auto"
+                crossOrigin="anonymous"
                 loop
                 playsInline
                 className="absolute inset-0 w-full h-full object-cover"

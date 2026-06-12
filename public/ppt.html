@@ -8,7 +8,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <base href="/">
+  <base href="./">
   <style>
     :root {
       --flag-green: #007A5E;
@@ -30,7 +30,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      
+    }
 
     body {
       font-family: 'Poppins', sans-serif;
@@ -323,6 +323,12 @@
       background: rgba(252, 209, 22, 0.18);
       border-color: rgba(252, 209, 22, 0.75);
       transform: translateY(-2px);
+    }
+    .photo-box.large {
+      grid-column: span 2;
+    }
+    .photo-box.large img {
+      height: 340px;
     }
     .thankyou-panel {
       background: rgba(255, 255, 255, 0.10);
@@ -620,9 +626,9 @@
         </div>
       </div>
       <div class="brand-actions">
-        <a href="/index.html"><button class="button-secondary">⬅ Back to project</button></a>
-        <a href="/demo.html"><button class="button-secondary">▶️ Practical Demo</button></a>
-        <a href="/readme.html"><button class="button-primary">📄 Read README</button></a>
+        <a href="./index.html"><button class="button-primary">🚀 Entrer dans le projet</button></a>
+        <a href="./demo.html"><button class="button-secondary">▶️ Démo pratique</button></a>
+        <a href="./readme.html"><button class="button-secondary">📄 Lire le README</button></a>
       </div>
     </div>
 
@@ -641,11 +647,11 @@
 
     <div class="photos">
       <div class="photo-box">
-        <img src="/image/photo1.jpg" alt="Personal photo">
+        <img src="./image/photo1.jpg" alt="Personal photo">
         <p><strong>My Travel Story</strong></p>
       </div>
       <div class="photo-box">
-        <img src="/image/photo3.jpg" alt="Personal photo 2">
+        <img src="./image/photo3.jpg" alt="Personal photo 2">
         <p><strong>Planning & Memories</strong></p>
       </div>
       <div class="photo-box">
@@ -658,32 +664,35 @@
   <!-- Slide 2 : Presentation text -->
   <div class="slide">
     <div class="title-box"><h2>🎙️ Project Overview</h2></div>
-    <p>This Travel Destination Blog is built as a responsive single page experience centered on visual storytelling and interactive travel content.</p>
+    <p>NKY Travel is a modern, responsive single-page application (SPA) built with React, TypeScript, Vite, and Tailwind CSS. It serves as a comprehensive platform for travel enthusiasts to discover destinations, share experiences, and build a community around travel adventures.</p>
     <div class="video-card">
       <p class="presentation-summary">
-        The site combines four main modules into one SPA: Destination Overview, Itinerary, Travel Notes, and Guestbook. It also extends the journey with a Spotboard for photo sharing and comments.
+        The application unites travel discovery, itinerary planning, trip storytelling, photo sharing, and community engagement in one seamless, dynamic interface. Every component is optimized for speed, accessibility, and mobile-first design. Users can explore curated destinations across Cameroon and the world, view detailed travel information, share personal travel experiences, and interact with other travelers through comments, ratings, and appreciation features.
       </p>
       <ul class="presentation-list">
-        <li>✨ Core travel modules are anchored for inline navigation without reloads</li>
-        <li>📸 Users can upload images or use the camera directly to add visual posts</li>
-        <li>💬 Comments and guestbook entries update instantly on the page</li>
-        <li>📊 Spotboard shows a live summary with appreciation rate and comment count</li>
+        <li>🏗️ Modular React architecture with reusable components, hooks, and TypeScript for type safety and scalability</li>
+        <li>📸 Rich media support: image galleries, photo uploads, video players with optimized playback, and Spotboard for community sharing</li>
+        <li>🔐 Secure authentication via Supabase with email confirmation, session management, and role-based access control</li>
+        <li>🌐 Multi-language support (English & French) with dynamic translation across the entire application</li>
+        <li>💬 Real-time interactions: comments, instant feedback, guestbook entries, and live appreciation counts</li>
+        <li>📱 Fully responsive design with smooth animations and optimized performance for all devices</li>
       </ul>
-      <p class="presentation-note">This presentation explains the project flow, user interactions, and how each module supports the central travel journal concept.</p>
-      <a href="demo.html" class="button-secondary presentation-link">▶️ Open Practical Demo</a>
+      <p class="presentation-note">This presentation outlines the technical architecture, core features, user workflows, design patterns, and how each module contributes to a professional, modern travel experience.</p>
+      <a href="./demo.html" class="button-secondary presentation-link">▶️ Open Practical Demo</a>
     </div>
   </div>
 
-  <!-- Slide 3 : What is the project? -->
+  <!-- Slide 3 : What is this project? -->
   <div class="slide">
     <div class="title-box"><h2>📌 What is this project?</h2></div>
     <p>
-      Travel Destination Blog is a single page travel journal designed around storytelling, exploration, and community interaction.
-      The central idea is to let users discover a destination, follow a planned itinerary, read travel notes, and leave feedback—all without leaving the page.
+      NKY Travel is a Single Page Application (SPA) designed as a complete travel ecosystem. It combines discovery, planning, storytelling, and community engagement in one cohesive platform. Users can explore travel destinations, access detailed itineraries, view user-generated travel content, capture and share photos through a spotboard, and interact with a vibrant community of travelers.
     </p>
     <p>
-      The experience is powered by dynamic JavaScript rendering, ensuring every action feels immediate and intuitive.
-      Core content is stored in arrays and rendered programmatically so the interface stays consistent and easy to extend.
+      The project prioritizes user experience with instant page transitions, smooth animations, and mobile-first design. All content is organized intuitively: browse destinations by category (beaches, mountains, cities, culture), read and write travel experiences, explore galleries of user photos and videos, and participate in real-time discussions.
+    </p>
+    <p>
+      Behind the scenes, the platform leverages modern web technologies: React for component-based UI, TypeScript for robust code quality, Tailwind CSS for responsive styling, Supabase for backend services and authentication, and Vite for optimized builds. The entire application dynamically translates between English and French, ensuring accessibility for a global audience.
     </p>
   </div>
 
@@ -691,11 +700,12 @@
   <div class="slide">
     <div class="title-box"><h2>🧩 Project Modules</h2></div>
     <ul>
-      <li>🗺️ <strong>Destination Overview:</strong> Embedded map plus a responsive image carousel with autoplay and manual controls</li>
-      <li>📆 <strong>Itinerary:</strong> Daily schedule table with click-to-expand details for each day</li>
-      <li>📝 <strong>Travel Notes:</strong> Cover image, title, date and expandable full content for storytelling</li>
-      <li>📮 <strong>Guestbook:</strong> Immediate submission, front-loaded message list, and validation on empty input</li>
-      <li>📌 <strong>Spotboard:</strong> Optional advanced sharing with photo capture, comments, and live appreciation summary</li>
+      <li>🗺️ <strong>Destination Explorer:</strong> Browse curated travel destinations with hero videos, detailed descriptions, ratings, reviews, best travel times, temperature info, and duration estimates. Filter by Cameroon or global destinations with smooth carousel navigation.</li>
+      <li>📸 <strong>Travel Photo Gallery:</strong> Explore a masonry grid of user-submitted and curated photos. Each photo includes photographer info, location, likes, views, and category tags. Click to expand, view full details, and leave comments with real-time appreciation counts.</li>
+      <li>👥 <strong>Travelers Gallery:</strong> Discover other travelers ranked by appreciation count. View their travel count, latest journey preview, and click to explore their full travel profile with all their posts and experiences.</li>
+      <li>📌 <strong>Spotboard:</strong> Advanced photo/video sharing community feature. Capture photos, upload media, add titles and locations, rate spots, leave comments, and see live appreciation summaries. Includes modal lightbox for full-screen viewing.</li>
+      <li>🎙️ <strong>Presentation (PPT):</strong> This slideshow provides an overview of the project, features, technical stack, use cases, and calls-to-action. Includes autoplay with pause/resume controls and smooth slide transitions.</li>
+      <li>📚 <strong>Documentation:</strong> Comprehensive README with setup instructions, feature explanations, troubleshooting guides, and authentication flow documentation. Accessible from within the app.</li>
     </ul>
   </div>
 
@@ -703,10 +713,14 @@
   <div class="slide">
     <div class="title-box"><h2>🛠️ Technologies Used</h2></div>
     <ul>
-      <li>✔️ <strong>HTML5:</strong> Structure and semantic layout</li>
-      <li>✔️ <strong>CSS3:</strong> Styling, animations, responsive design</li>
-      <li>✔️ <strong>JavaScript:</strong> Logic, events, dynamic updates</li>
-      <li>✔️ <strong>DOM API:</strong> Real-time content manipulation</li>
+      <li>⚛️ <strong>React 18:</strong> Component-based UI library for building interactive user interfaces with reusable, modular components</li>
+      <li>📘 <strong>TypeScript:</strong> Statically typed JavaScript for safer, more maintainable code with better IDE support</li>
+      <li>⚡ <strong>Vite:</strong> Ultra-fast build tool and dev server with hot module replacement for lightning-quick development</li>
+      <li>🎨 <strong>Tailwind CSS:</strong> Utility-first CSS framework for rapid, responsive, and consistent design implementation</li>
+      <li>🔐 <strong>Supabase:</strong> Open-source Firebase alternative providing PostgreSQL database, authentication, real-time subscriptions, and REST APIs</li>
+      <li>🌐 <strong>HTML5:</strong> Semantic structure, accessibility, and modern web standards</li>
+      <li>📦 <strong>npm/Node.js:</strong> Package management and development environment setup</li>
+      <li>💻 <strong>ES6+ JavaScript:</strong> Modern syntax, async/await, destructuring, and functional programming patterns</li>
     </ul>
   </div>
 
@@ -746,48 +760,65 @@
   <!-- Slide 6 : How does it work? -->
   <div class="slide">
     <div class="title-box"><h2>⚙️ How does it work?</h2></div>
+    <p>
+      NKY Travel uses a reactive, component-driven front-end architecture. When a user interacts with the application—browsing destinations, uploading photos, or leaving comments—React's state management system instantly updates the UI without requiring page reloads. This creates a fluid, app-like experience in the browser.
+    </p>
     <ul>
-      <li>✔️ One HTML file loads all content dynamically</li>
-      <li>✔️ JavaScript manages user interactions</li>
-      <li>✔️ No page reloads (SPA architecture)</li>
-      <li>✔️ Data stored in JavaScript objects</li>
-      <li>✔️ DOM API updates content instantly</li>
-      <li>✔️ Spotboard results refresh every minute</li>
+      <li>🎯 <strong>Smart Routing:</strong> Client-side navigation between Home, Destinations, Travelers Gallery, Spotboard, and Presentation pages without full page refreshes</li>
+      <li>⚡ <strong>State Management:</strong> Centralized state for user authentication, travel data, comments, and media, updated reactively across all components</li>
+      <li>📡 <strong>Backend Integration:</strong> Supabase provides real-time database, user authentication with email confirmation, and secure API endpoints</li>
+      <li>🎨 <strong>Dynamic Rendering:</strong> React components re-render only affected parts of the UI when data changes, optimizing performance</li>
+      <li>🌍 <strong>Multi-Language Support:</strong> Translation service hooks enable instant language switching across all text and UI elements</li>
+      <li>📸 <strong>Media Handling:</strong> Images and videos are lazy-loaded, optimized with responsive sizing, and cached for fast display</li>
+      <li>💾 <strong>Data Persistence:</strong> User sessions and preferences are stored in local state, with travel data synced to Supabase backend</li>
+      <li>✅ <strong>Instant Feedback:</strong> All user actions (likes, comments, uploads) provide immediate visual confirmation and update live counters</li>
     </ul>
   </div>
 
   <!-- Slide 7 : Concrete Examples -->
   <div class="slide">
-    <div class="title-box"><h2>🧩 Concrete Examples</h2></div>
+    <div class="title-box"><h2>🧩 Application Features & Examples</h2></div>
     <ul>
-      <li>📸 Carousel switches photos automatically</li>
-      <li>💖 Like button changes color and counts</li>
-      <li>📋 Click a day → Shows detailed activities</li>
-      <li>📮 Guestbook updates instantly</li>
-      <li>🧾 Spotboard publishes posts and comments with live summary</li>
+      <li>🎥 <strong>Hero Videos:</strong> Destination pages autoplay optimized videos with muted audio, preloading, and poster thumbnails for instant display</li>
+      <li>🌍 <strong>Destination Cards:</strong> Each destination shows ratings, review counts, best travel seasons, temperature ranges, and duration. Users can like, save, and filter by country.</li>
+      <li>💖 <strong>Appreciation System:</strong> Like button changes color, increments counter, and syncs across all views. Real-time appreciation summaries on gallery and spotboard.</li>
+      <li>📋 <strong>Expandable Details:</strong> Click destinations or photos to see full content in modal dialogs with detailed descriptions, highlights, and interactive controls.</li>
+      <li>🗣️ <strong>Comments & Ratings:</strong> Users can leave comments on destinations, photos, and spotboard posts with star ratings. Comments appear instantly with author avatars and timestamps.</li>
+      <li>📸 <strong>Photo Upload & Gallery:</strong> Spotboard allows photo/video capture via device camera or file upload. Gallery displays photos in a responsive masonry layout with click-to-enlarge modals.</li>
+      <li>🌐 <strong>Language Toggle:</strong> Switch between English and French with one click. All content—UI text, destination descriptions, comments—translates instantly without page reload.</li>
+      <li>📱 <strong>Responsive Layout:</strong> Seamless experience on desktop, tablet, and mobile with adaptive grid layouts, collapsible menus, and touch-friendly controls.</li>
+      <li>🔐 <strong>User Authentication:</strong> Sign up with email confirmation, secure login, and persistent sessions. Only authenticated users can post reviews, upload photos, and comment.</li>
     </ul>
   </div>
 
   <!-- Slide 8 : Problems Solved -->
   <div class="slide">
-    <div class="title-box"><h2>🚨 Problems Solved</h2></div>
+    <div class="title-box"><h2>🚨 Challenges & Solutions</h2></div>
     <ul>
-      <li>🔄 Slow navigation with reloads</li>
-      <li>📱 Poor mobile experience</li>
-      <li>📨 Static guestbook</li>
-      <li>🎨 Lack of interactivity</li>
-      <li>📉 Poor organization</li>
+      <li>❌ <strong>Slow Navigation:</strong> ✅ Solved with SPA architecture—no full page reloads, instant client-side routing between sections</li>
+      <li>❌ <strong>Poor Mobile Experience:</strong> ✅ Solved with mobile-first responsive design, touch-friendly controls, and adaptive layouts for all screen sizes</li>
+      <li>❌ <strong>Static Content:</strong> ✅ Solved with dynamic state management and real-time data syncing to Supabase backend</li>
+      <li>❌ <strong>Lack of Interactivity:</strong> ✅ Solved with instant feedback loops—users see their actions reflected immediately (likes, comments, uploads)</li>
+      <li>❌ <strong>Poor Organization & Discoverability:</strong> ✅ Solved with intuitive navigation, categorized galleries, advanced filtering, and search capabilities</li>
+      <li>❌ <strong>Authentication Friction:</strong> ✅ Solved with Supabase email confirmation, persistent sessions, and seamless sign-in/sign-up flow</li>
+      <li>❌ <strong>Language Barrier:</strong> ✅ Solved with multi-language support (English & French) translating dynamically across the entire UI</li>
+      <li>❌ <strong>Media Loading Delays:</strong> ✅ Solved with lazy loading, image optimization, video preloading, and responsive image sizing</li>
+      <li>❌ <strong>Complex User Flows:</strong> ✅ Solved with clear user interface, inline help, and intuitive workflows from discovery to sharing</li>
     </ul>
   </div>
 
   <!-- Slide 9 : Importance -->
   <div class="slide">
-    <div class="title-box"><h2>📈 Importance</h2></div>
+    <div class="title-box"><h2>📈 Impact & Learning Outcomes</h2></div>
     <ul>
-      <li>✅ Modern front-end skills</li>
-      <li>✅ Real-world applications</li>
-      <li>✅ SPA architecture mastery</li>
-      <li>✅ Professional readiness</li>
+      <li>🎯 <strong>Modern Front-End Skills:</strong> Mastery of React, TypeScript, and component-based architecture for building scalable web applications</li>
+      <li>🖱️ <strong>Full-Stack Development:</strong> Understanding of backend integration with Supabase, authentication flows, and real-time data synchronization</li>
+      <li>🗜️ <strong>Responsive Design:</strong> Expertise in mobile-first development, accessibility standards, and CSS Grid/Flexbox for all device types</li>
+      <li>🧐 <strong>Software Architecture:</strong> Experience designing modular, maintainable code with separation of concerns, custom hooks, and reusable components</li>
+      <li>📘 <strong>State Management:</strong> Proficiency in React hooks (useState, useContext, useEffect) and managing complex application state</li>
+      <li>🌍 <strong>Real-World Application:</strong> A production-ready portfolio project demonstrating professional coding standards, documentation, and deployment readiness</li>
+      <li>💋 <strong>Team Collaboration:</strong> Experience working with stakeholders, gathering requirements, iterating on feedback, and delivering user-focused solutions</li>
+      <li>💸 <strong>Career Preparation:</strong> Demonstrated ability to build feature-rich applications that prepare me for roles in web development, software engineering, and tech leadership</li>
     </ul>
   </div>
 
@@ -797,30 +828,34 @@
 
     <div class="photos">
       <div class="photo-box">
-        <img src="/image/photo1.jpg" alt="Personal photo">
+        <img src="./image/photo1.jpg" alt="Personal photo">
         <p><strong>Personal journey</strong><br>My own story and inspiration behind this project.</p>
       </div>
       <div class="photo-box">
-        <img src="/image/photo3.jpg" alt="Family photo">
+        <img src="./image/my family.jpg" alt="Family photo">
         <p><strong>Family support</strong><br>Thank you to my family for love, motivation, and encouragement.</p>
       </div>
-      <div class="photo-box">
-        <img src="/image/mama_winnie.jpg" alt="Winnie support">
-        <p><strong>Winnie support</strong><br>Thank you, Winnie, for your support in China and your encouragement.</p>
+      <div class="photo-box large">
+        <img src="./image/class made.jpg" alt="Classmates photo">
+        <p><strong>Classmates</strong><br>Merci à mes camarades de classe pour vos retours honnêtes, votre esprit d'équipe et votre soutien continu.</p>
       </div>
       <div class="photo-box">
-        <img src="/image/girlfriend.jpg" alt="Girlfriend support">
-        <p><strong>My girlfriend</strong><br>Thank you for your patience, care, and strong support.</p>
+        <img src="./image/mama_winnie.jpg" alt="Winnie support">
+        <p><strong>Winnie support</strong><br>Thank you for your encouragement in China and your steady presence through the project.</p>
+      </div>
+      <div class="photo-box">
+        <img src="./image/girlfriend.jpg" alt="Girlfriend support">
+        <p><strong>My girlfriend</strong><br>Thank you for your patience, caring support, and belief in me throughout every late night and hard task.</p>
       </div>
     </div>
 
     <div class="photos photos-alt">
       <div class="photo-box">
-        <img src="/image/nanjing.jpg" alt="Teacher guidance">
+        <img src="./image/teacher.svg" alt="Teacher illustration">
         <p><strong>Teacher</strong><br>Thank you for your guidance, knowledge, and encouragement.</p>
       </div>
       <div class="photo-box">
-        <img src="/image/universite.jpg" alt="University support">
+        <img src="./image/universite.jpg" alt="University support">
         <p><strong>My institution</strong><br>Thank you for the learning environment and the resources provided.</p>
       </div>
     </div>
@@ -835,11 +870,11 @@
 
       <div class="thankyou-subtitle">Avec toute ma reconnaissance :</div>
       <ul>
-        <li><strong>Le Professeur :</strong> Merci pour vos conseils, votre disponibilité et votre enseignement qui ont guidé chaque étape de ce projet. Votre confiance m'a donné le courage de persévérer.</li>
-        <li><strong>L'Université :</strong> Merci pour l'environnement académique, les ressources, et les opportunités qui ont rendu ce travail possible.</li>
-        <li><strong>Mama Winnie et son mari :</strong> Merci pour votre soutien moral et matériel en Chine, votre générosité et vos encouragements continus ont été essentiels.</li>
-        <li><strong>Mes camarades :</strong> Merci pour vos retours honnêtes, votre entraide et les moments partagés durant le développement.</li>
-        <li><strong>Ma petite amie :</strong> Merci pour ta patience, ton amour et ton soutien indéfectible — ce projet est aussi le fruit de ta présence.</li>
+        <li><strong>Le Professeur :</strong> Merci pour vos conseils précis, votre disponibilité constante et votre enseignement rigoureux. Vos retours ont guidé chaque étape du développement et m'ont aidé à améliorer la qualité du travail.</li>
+        <li><strong>L'Université :</strong> Merci pour l'environnement académique, les ressources techniques et les opportunités d'apprentissage. Ce projet a pu se réaliser grâce à l'encadrement, aux laboratoires et aux infrastructures mis à disposition.</li>
+        <li><strong>Mama Winnie et son mari :</strong> Merci pour votre soutien moral et matériel en Chine. Votre générosité, vos encouragements continus et vos conseils chaleureux ont été essentiels à ma motivation.</li>
+        <li><strong>Mes camarades :</strong> Merci pour vos retours honnêtes, votre entraide et les moments partagés durant le développement. Votre travail collectif et vos idées ont enrichi le projet à chaque étape.</li>
+        <li><strong>Ma petite amie :</strong> Merci pour ta patience, ton amour et ton soutien indéfectible. Ce projet est aussi le fruit de ta présence constante, de ta confiance et de ta motivation partagée.</li>
       </ul>
 
       <p class="presentation-note">Les messages ci-dessus sont réservés et sincères ; chaque remerciement est accompagné d'un encadré photo ci-dessous pour illustrer la personne ou le groupe.</p>
@@ -906,12 +941,23 @@
 
   <!-- Slide 12 : Conclusion -->
   <div class="slide">
-    <div class="title-box"><h2>🎤 Conclusion</h2></div>
+    <div class="title-box"><h2>� Final Thoughts & Call to Action</h2></div>
     <p>
-      This project represents my learning, creativity, and gratitude.
-      It prepares me for a successful future in software engineering.
+      This project represents my dedication to learning, innovation, and excellence in software engineering. NKY Travel demonstrates not just technical capabilities, but a commitment to building user-focused, accessible, and maintainable applications that solve real-world problems.
     </p>
-    <p class="highlight">Thank you to everyone who supported me 🙏</p>
+    <p>
+      Throughout this journey, I have grown as a developer and as an individual. I have learned the value of clean code, responsive design, collaborative problem-solving, and perseverance through technical challenges. This application is a testament to the support of my professors, family, friends, and mentors who believed in my potential.
+    </p>
+    <p style="margin-top: 24px; font-size: 1.15rem; color: #fff; font-weight: 700;">
+      🚀 <span class="highlight">Ready to explore? Try the app now!🚀</span>
+    </p>
+    <div style="margin-top: 20px; display: flex; gap: 14px; flex-wrap: wrap;">
+      <a href="./index.html" style="text-decoration: none;"><button class="button-primary" style="padding: 14px 28px; font-size: 1rem;">Explore NKY Travel</button></a>
+      <a href="./readme.html" style="text-decoration: none;"><button class="button-secondary" style="padding: 14px 28px; font-size: 1rem;">Read Documentation</button></a>
+    </div>
+    <p style="margin-top: 32px; color: #FFD700; font-weight: 800; text-align: center; font-size: 1.2rem;">
+      Thank you for your time and interest! 🙏
+    </p>
   </div>
 
 </div>

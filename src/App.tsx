@@ -96,7 +96,7 @@ export default function App() {
           return;
         }
 
-        setAuthError(t('accountCreated'));
+        setAuthError(t('checkEmailToConfirm'));
         setIsSignUp(false);
         setEmail('');
         setPassword('');
@@ -319,17 +319,18 @@ export default function App() {
         )}
       </header>
 
-      {page === 'traveler' && (
-        <TravelerProfile
-          language={language}
-          travelerName={selectedTravelerName}
-          travelerId={selectedTravelerId}
-          travels={travelerTravels}
-          onBack={() => setPage(travelerReturnPage)}
-          onAppreciate={handleAppreciateTravel}
-          currentUserId={user?.id}
-        />
-      )}
+      <main key={page} className="min-h-screen animate-fade-in">
+        {page === 'traveler' && (
+          <TravelerProfile
+            language={language}
+            travelerName={selectedTravelerName}
+            travelerId={selectedTravelerId}
+            travels={travelerTravels}
+            onBack={() => setPage(travelerReturnPage)}
+            onAppreciate={handleAppreciateTravel}
+            currentUserId={user?.id}
+          />
+        )}
 
       {page === 'travel-notes' && (
         <TravelNotesPublisher
@@ -397,6 +398,7 @@ export default function App() {
           />
         </>
       )}
+      </main>
     </div>
   );
 }
