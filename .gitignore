@@ -22,3 +22,6 @@ dist-ssr
 *.sw?
 .env
 .env.production
+
+# Ignore nested Git repo created by local project copy
+NKY_Travel_Project/
