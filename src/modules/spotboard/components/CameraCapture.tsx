@@ -60,8 +60,8 @@ export function CameraCapture({ language, isOpen, onClose, onCapture }: CameraCa
     await startCamera({ audio: false, video: true });
   };
 
-  const handleCapturePhoto = () => {
-    const blob = capturePhoto();
+  const handleCapturePhoto = async () => {
+    const blob = await capturePhoto();
     if (blob) {
       const url = URL.createObjectURL(blob);
       setCapturedPreview(url);
@@ -69,8 +69,8 @@ export function CameraCapture({ language, isOpen, onClose, onCapture }: CameraCa
   };
 
   const handleTimerCapture = (seconds: number) => {
-    startCountdown(seconds, () => {
-      handleCapturePhoto();
+    startCountdown(seconds, async () => {
+      await handleCapturePhoto();
     });
   };
 

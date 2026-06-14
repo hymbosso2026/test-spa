@@ -1,3 +1,5 @@
+import { DEFAULT_LANGUAGE } from '../constants';
+
 const T: Record<string, Record<string, string>> = {
   en: {
     welcome: 'Welcome to NKY Travel',
@@ -65,6 +67,14 @@ const T: Record<string, Record<string, string>> = {
     error: 'Error',
     success: 'Success',
     noPhotos: 'No photos available',
+    photos: 'Photos',
+    musicTitle: 'Work Music',
+    musicSubtitle: 'Choose a playlist while you browse the app.',
+    musicPlaylist: 'Music Playlist',
+    currentTrack: 'Now playing',
+    playTrack: 'Play',
+    pauseTrack: 'Pause',
+    selectTrack: 'Select a track',
     spotName: 'Your Name',
     spotTitle: 'Spot Title',
     spotLocation: 'Location',
@@ -142,6 +152,14 @@ const T: Record<string, Record<string, string>> = {
     error: 'Erreur',
     success: 'Succès',
     noPhotos: 'Aucune photo disponible',
+    photos: 'Photos',
+    musicTitle: 'Musique de travail',
+    musicSubtitle: 'Choisissez une piste pendant que vous parcourez l’application.',
+    musicPlaylist: 'Playlist musicale',
+    currentTrack: 'Lecture en cours',
+    playTrack: 'Lecture',
+    pauseTrack: 'Pause',
+    selectTrack: 'Sélectionner une piste',
     spotName: 'Votre Nom',
     spotTitle: 'Titre du Spot',
     spotLocation: 'Localisation',
@@ -215,6 +233,14 @@ const T: Record<string, Record<string, string>> = {
     error: 'Error',
     success: 'Éxito',
     noPhotos: 'Sin fotos disponibles',
+    photos: 'Fotos',
+    musicTitle: 'Música de trabajo',
+    musicSubtitle: 'Elige una pista mientras navegas por la aplicación.',
+    musicPlaylist: 'Lista de reproducción',
+    currentTrack: 'Reproduciendo ahora',
+    playTrack: 'Reproducir',
+    pauseTrack: 'Pausa',
+    selectTrack: 'Seleccionar una pista',
     spotName: 'Tu Nombre',
     spotTitle: 'Título del Spot',
     spotLocation: 'Ubicación',
@@ -288,6 +314,14 @@ const T: Record<string, Record<string, string>> = {
     error: 'Fehler',
     success: 'Erfolg',
     noPhotos: 'Keine Fotos verfügbar',
+    photos: 'Fotos',
+    musicTitle: 'Arbeitsmusik',
+    musicSubtitle: 'Wähle einen Titel, während du die App durchsuchst.',
+    musicPlaylist: 'Musik-Playlist',
+    currentTrack: 'Jetzt läuft',
+    playTrack: 'Abspielen',
+    pauseTrack: 'Pause',
+    selectTrack: 'Titel auswählen',
     spotName: 'Ihr Name',
     spotTitle: 'Spot-Titel',
     spotLocation: 'Standort',
@@ -1255,7 +1289,8 @@ Object.keys(T).forEach(lang => {
 });
 
 export const getTranslation = (language: string, key: string): string => {
-  return T[language]?.[key] || T.en[key] || key;
+  const selectedLanguage = T[language] ? language : DEFAULT_LANGUAGE;
+  return T[selectedLanguage]?.[key] || T[DEFAULT_LANGUAGE]?.[key] || key;
 };
 
 export const getAllTranslations = (language: string): Record<string, string> => {

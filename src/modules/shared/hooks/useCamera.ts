@@ -18,7 +18,7 @@ interface UseCamera {
   countdown: number;
   startCamera: (options?: CameraOptions) => Promise<void>;
   stopCamera: () => void;
-  capturePhoto: () => Blob | null;
+  capturePhoto: () => Promise<Blob | null>;
   requestPermission: () => Promise<boolean>;
   flipCamera: () => Promise<void>;
   setZoom: (z: number) => void;
@@ -165,7 +165,7 @@ export const useCamera = (): UseCamera => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [facingMode]);
 
-  const capturePhoto = useCallback((): Blob | null => {
+  const capturePhoto = useCallback(async (): Promise<Blob | null> => {
     try {
       if (!videoRef.current || !streaming) return null;
 
@@ -194,9 +194,11 @@ export const useCamera = (): UseCamera => {
         ctx.filter = 'none';
       }
 
-      let blob: Blob | null = null;
-      canvas.toBlob((b) => { blob = b; }, 'image/jpeg', 0.95);
-      return blob;
+      return await new Promise<Blob | null>((resolve) => {
+        canvas.toBlob((blob) => {
+          resolve(blob);
+        }, 'image/jpeg', 0.95);
+      });
     } catch (err) {
       console.error('Failed to capture photo:', err);
       return null;

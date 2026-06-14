@@ -11,6 +11,12 @@ npm run dev
 
 Visit http://localhost:5173
 
+## 🔄 Live development & translation
+
+- Use `npm run dev` to start Vite and get hot reload when files change.
+- Language selection updates the app instantly and is saved in localStorage.
+- Music selection plays while browsing the app.
+
 ## ▶️ Run & Share (fix display issues)
 
 - Stop any Live Server or other servers that may be serving `index.html` (Live Server uses a different port like `5174`). If you use the VS Code "Go Live" button, click it again to stop it.

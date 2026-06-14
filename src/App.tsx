@@ -22,7 +22,8 @@ const supabase = createClient(
 
 export default function App() {
   const [language, setLanguage] = useState(() => {
-    return localStorage.getItem(STORAGE_KEYS.LANGUAGE) || 'en';
+    const storedLang = localStorage.getItem(STORAGE_KEYS.LANGUAGE);
+    return storedLang && LANGUAGES[storedLang] ? storedLang : DEFAULT_LANGUAGE;
   });
   const [page, setPage] = useState<PageType>('overview');
   const [user, setUser] = useState<User | null>(null);
@@ -51,8 +52,11 @@ export default function App() {
   const [travelerReturnPage, setTravelerReturnPage] = useState<PageType>('overview');
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.LANGUAGE, language);
-  }, [language]);
+    const selectedLanguage = LANGUAGES[language] ? language : DEFAULT_LANGUAGE;
+    localStorage.setItem(STORAGE_KEYS.LANGUAGE, selectedLanguage);
+    document.documentElement.lang = selectedLanguage;
+    document.title = t('welcome');
+  }, [language, t]);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -262,7 +266,7 @@ export default function App() {
               <Camera size={16} /> {t('spotboard')}
             </button>
             <button onClick={() => setPage('photos')} className={`flex items-center gap-2 font-bold transition-all px-3 py-2 rounded-xl text-sm ${page === 'photos' ? 'text-[#CE1126] bg-[#CE1126]/10 shadow-sm' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}`}>
-              <Image size={16} /> Photos
+              <Image size={16} /> {t('photos')}
             </button>
             <button onClick={() => setPage('destinations')} className={`flex items-center gap-2 font-bold transition-all px-3 py-2 rounded-xl text-sm ${page === 'destinations' ? 'text-[#007A5E] bg-[#007A5E]/10 shadow-sm' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}`}>
               <MapPin size={16} /> Destinations
@@ -304,10 +308,10 @@ export default function App() {
               <Camera size={18} className="text-[#FCD116]" /> {t('spotboard')}
             </button>
             <button onClick={() => { setPage('photos'); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 text-gray-900 font-bold hover:bg-[#CE1126]/10 rounded-xl flex items-center gap-2 transition-all">
-              <Image size={18} className="text-[#CE1126]" /> Photos
+              <Image size={18} className="text-[#CE1126]" /> {t('photos')}
             </button>
             <button onClick={() => { setPage('destinations'); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 text-gray-900 font-bold hover:bg-[#007A5E]/10 rounded-xl flex items-center gap-2 transition-all">
-              <MapPin size={18} className="text-[#007A5E]" /> Destinations
+              <MapPin size={18} className="text-[#007A5E]" /> {t('destination')}
             </button>
             <button onClick={() => { setPage('gallery'); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 text-gray-900 font-bold hover:bg-[#007A5E]/10 rounded-xl flex items-center gap-2 transition-all">
               <Users size={18} className="text-[#007A5E]" /> {t('gallery')}
@@ -320,6 +324,10 @@ export default function App() {
       </header>
 
       <main key={page} className="min-h-screen animate-fade-in">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <MusicPlayer language={language} />
+        </div>
+
         {page === 'traveler' && (
           <TravelerProfile
             language={language}
