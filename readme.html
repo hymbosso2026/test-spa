@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NKY Travel - Project Documentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --flag-green: #007A5E;
+      --flag-red: #CE1126;
+      --flag-yellow: #FCD116;
+      --text-light: #f0f0f0;
+      --text-dark: #1a1a1a;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0a1628 0%, #0f2847 50%, #1a1a2e 100%);
+      color: var(--text-light);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* Animated Stars Background */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--flag-yellow);
+      border-radius: 50%;
+      animation: twinkle 3s infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--flag-green), var(--flag-red));
+      padding: 60px 40px;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 40px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 215, 22, 0.1);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-30px); }
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: var(--flag-yellow);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.95);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Section Styles */
+    section {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 40px;
+      margin-bottom: 30px;
+      border-radius: 15px;
+      border-left: 5px solid var(--flag-yellow);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    section h2 {
+      font-size: 2rem;
+      color: var(--flag-yellow);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    section h2::before {
+      content: '✨';
+      font-size: 2.2rem;
+    }
+
+    section h3 {
+      font-size: 1.5rem;
+      color: var(--flag-red);
+      margin-top: 20px;
+      margin-bottom: 15px;
+    }
+
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    li {
+      margin-bottom: 12px;
+      padding-left: 10px;
+      transition: all 0.3s ease;
+    }
+
+    li:hover {
+      color: var(--flag-yellow);
+      transform: translateX(10px);
+    }
+
+    li::marker {
+      color: var(--flag-green);
+      font-weight: bold;
+    }
+
+    /* Feature Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .feature-card {
+      background: linear-gradient(135deg, rgba(206, 17, 38, 0.15), rgba(122, 90, 0, 0.15));
+      padding: 25px;
+      border-radius: 12px;
+      border: 2px solid var(--flag-yellow);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(252, 209, 22, 0.2);
+      background: linear-gradient(135deg, rgba(206, 17, 38, 0.25), rgba(122, 90, 0, 0.25));
+    }
+
+    .feature-card h4 {
+      color: var(--flag-yellow);
+      margin-bottom: 12px;
+      font-size: 1.2rem;
+    }
+
+    .feature-card p {
+      color: rgba(240, 240, 240, 0.9);
+      font-size: 0.95rem;
+    }
+
+    /* Highlight Box */
+    .highlight-box {
+      background: linear-gradient(135deg, var(--flag-green), rgba(0, 122, 94, 0.3));
+      padding: 30px;
+      border-radius: 12px;
+      border: 2px dashed var(--flag-yellow);
+      margin: 20px 0;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    /* Tech Stack */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .tech-badge {
+      background: var(--flag-red);
+      color: var(--flag-yellow);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(206, 17, 38, 0.3);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, var(--flag-green), var(--flag-red));
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      margin-top: 50px;
+      color: var(--flag-yellow);
+      font-weight: 600;
+      box-shadow: var(--shadow);
+    }
+
+    footer a {
+      color: var(--flag-yellow);
+      text-decoration: none;
+      border-bottom: 2px solid var(--flag-yellow);
+      transition: all 0.3s ease;
+    }
+
+    footer a:hover {
+      color: white;
+      border-color: white;
+    }
+
+    /* Navigation Button */
+    .nav-button {
+      display: inline-block;
+      background: var(--flag-red);
+      color: var(--flag-yellow);
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 20px 10px 20px 0;
+      transition: all 0.3s ease;
+      border: 2px solid var(--flag-yellow);
+    }
+
+    .nav-button:hover {
+      background: var(--flag-yellow);
+      color: var(--flag-red);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(206, 17, 38, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      section {
+        padding: 20px;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="starfield"></div>
+
+  <div class="container">
+    <header>
+      <h1>🌍 NKY Travel</h1>
+      <p>Share Your Travel Experiences with the World</p>
+    </header>
+
+    <section>
+      <h2>Project Overview</h2>
+      <p>
+        Welcome to <strong>NKY Travel</strong>, a modern and interactive web application designed to inspire travelers and showcase beautiful destinations around the world. This project combines elegant design with powerful features to create an immersive travel storytelling experience.
+      </p>
+      <div class="highlight-box">
+        "A visual journey that connects travelers, shares moments, and celebrates the beauty of exploration."
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Features</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4>🎬 Camera Capture</h4>
+          <p>Capture beautiful moments directly from your device's camera and share them instantly.</p>
+        </div>
+        <div class="feature-card">
+          <h4>🗺️ Travel Mapping</h4>
+          <p>Explore destinations and view travel routes with an interactive mapping interface.</p>
+        </div>
+        <div class="feature-card">
+          <h4>📸 Gallery Management</h4>
+          <p>Organize and showcase your travel photos in beautiful, responsive galleries.</p>
+        </div>
+        <div class="feature-card">
+          <h4>✍️ Travel Notes</h4>
+          <p>Document your journeys with detailed travel notes and observations.</p>
+        </div>
+        <div class="feature-card">
+          <h4>🌟 Spotboard</h4>
+          <p>Discover and share hidden gems and travel recommendations.</p>
+        </div>
+        <div class="feature-card">
+          <h4>👥 Community</h4>
+          <p>Connect with other travelers and explore their adventures.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Technology Stack</h2>
+      <div class="tech-stack">
+        <span class="tech-badge">React 18</span>
+        <span class="tech-badge">TypeScript</span>
+        <span class="tech-badge">Vite</span>
+        <span class="tech-badge">Tailwind CSS</span>
+        <span class="tech-badge">Supabase</span>
+        <span class="tech-badge">PostgreSQL</span>
+      </div>
+      <ul>
+        <li><strong>Frontend:</strong> React with TypeScript for type-safe, scalable components</li>
+        <li><strong>Build Tool:</strong> Vite for lightning-fast development and optimized production builds</li>
+        <li><strong>Styling:</strong> Tailwind CSS for utility-first, responsive design</li>
+        <li><strong>Backend:</strong> Supabase with PostgreSQL for real-time data management</li>
+        <li><strong>APIs:</strong> RESTful architecture with secure authentication</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Project Structure</h2>
+      <h3>Main Directories:</h3>
+      <ul>
+        <li><code>src/modules/</code> - Core feature modules
+          <ul>
+            <li><code>overview/</code> - Dashboard and overview components</li>
+            <li><code>presentation/</code> - Authentication and welcome screens</li>
+            <li><code>spotboard/</code> - Photo spotting and sharing</li>
+            <li><code>travel-notes/</code> - Travel documentation</li>
+            <li><code>travelers/</code> - Traveler profiles and galleries</li>
+            <li><code>shared/</code> - Shared utilities, hooks, and components</li>
+          </ul>
+        </li>
+        <li><code>supabase/</code> - Database migrations and schema</li>
+        <li><code>public/</code> - Static assets</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>How to Get Started</h2>
+      <h3>Installation:</h3>
+      <ol>
+        <li>Clone the repository or download the project</li>
+        <li>Navigate to the project directory: <code>cd test-spa</code></li>
+        <li>Install dependencies: <code>npm install</code></li>
+        <li>Start the development server: <code>npm run dev</code></li>
+        <li>Open your browser to <code>http://localhost:5174</code></li>
+      </ol>
+
+      <h3>Build for Production:</h3>
+      <ol>
+        <li>Run: <code>npm run build</code></li>
+        <li>Preview: <code>npm run preview</code></li>
+        <li>Deploy to your hosting service</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Key Features Explained</h2>
+      
+      <h3>🎯 Camera Capture Module</h3>
+      <p>
+        Users can capture photos directly from their device camera or upload existing images. The enhanced camera capture provides real-time preview and instant sharing capabilities.
+      </p>
+
+      <h3>📍 Travel Mapping</h3>
+      <p>
+        Interactive maps show travel destinations, routes, and points of interest. Users can explore geographically and discover new travel inspiration.
+      </p>
+
+      <h3>🖼️ Gallery System</h3>
+      <p>
+        Beautiful, responsive photo galleries showcase travel moments. Each gallery is optimized for mobile and desktop viewing with smooth animations and zoom functionality.
+      </p>
+
+      <h3>📝 Travel Notes Publisher</h3>
+      <p>
+        Create detailed travel narratives with text, photos, and metadata. Travel notes are stored securely and can be shared with the community.
+      </p>
+
+      <h3>⭐ Spotboard</h3>
+      <p>
+        A community-driven platform for sharing hidden gems, travel tips, and recommendations. Users can rate, comment on, and appreciate spots.
+      </p>
+    </section>
+
+    <section>
+      <h2>Database Schema</h2>
+      <p>The project uses PostgreSQL through Supabase with the following tables:</p>
+      <ul>
+        <li><strong>user_profiles</strong> - User information and preferences</li>
+        <li><strong>travels</strong> - Travel records and metadata</li>
+        <li><strong>photos</strong> - Photo storage and references</li>
+        <li><strong>spotboard_photos</strong> - Spotboard contributions</li>
+        <li><strong>spotboard_ratings</strong> - Community ratings and feedback</li>
+        <li><strong>appreciations</strong> - User appreciation/like system</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Performance & Security</h2>
+      <ul>
+        <li>✅ Row-Level Security (RLS) enabled on all tables</li>
+        <li>✅ Real-time database updates using Supabase subscriptions</li>
+        <li>✅ Optimized image loading with responsive sizing</li>
+        <li>✅ Secure authentication flow with JWT tokens</li>
+        <li>✅ CORS protection and API rate limiting</li>
+      </ul>
+    </section>
+
+      <div style="text-align: center; margin: 40px 0;">
+      <a href="./index.html" class="nav-button">🏠 Back to Home</a>
+      <a href="./ppt.html" class="nav-button">📊 View Presentation</a>
+    </div>
+
+    <footer>
+      <p>🇨🇲 <strong>NKY Travel</strong> - Inspired by Cameroon's Beauty 🇨🇲</p>
+      <p style="margin-top: 15px; font-size: 0.9rem;">
+        Built with ❤️ by <strong>NKWEMI KEYIM HYMBOSSO</strong>
+      </p>
+      <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8); font-size: 0.85rem;">
+        © 2026 NKY Travel. All rights reserved.
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // Generate animated stars
+    function createStars() {
+      const starfield = document.getElementById('starfield');
+      const starCount = 50;
+
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 3 + 's';
+        starfield.appendChild(star);
+      }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', createStars);
+  </script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="./">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NKY Travel - Interactive Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-start: #071018;
+      --bg-end: #0b2d3f;
+      --text: #f9fafb;
+      --muted: #cfd8e3;
+      --accent: #f2c94c;
+      --accent-strong: #e09b00;
+      --panel: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.16);
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.32);
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top left, rgba(242, 201, 76, 0.12), transparent 22%),
+        linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
+    }
+    body {
+      padding: 0;
+    }
+    .page-shell {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .brand-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 24px 28px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+    .brand-block {
+      display: grid;
+      gap: 10px;
+    }
+    .brand-block h1 {
+      margin: 0;
+      font-size: clamp(2rem, 2.6vw, 2.8rem);
+      letter-spacing: 0.06em;
+    }
+    .brand-block p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 780px;
+      line-height: 1.7;
+    }
+    .brand-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .button-primary,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 999px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .button-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #071018;
+    }
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .button-primary:hover,
+    .button-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.22);
+    }
+    .demo-panel {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .demo-stage {
+      display: grid;
+      gap: 18px;
+    }
+    .stage-label {
+      font-size: 0.95rem;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .iframe-shell {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: var(--shadow);
+    }
+    iframe {
+      width: 100%;
+      min-height: 760px;
+      border: none;
+      display: block;
+      background: #071018;
+    }
+    .overlay {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+    }
+    .overlay::before {
+      content: '';
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 24px;
+      border: 2px solid rgba(242, 201, 76, 0.7);
+      box-shadow: 0 0 0 2px rgba(242, 201, 76, 0.1);
+      transition: transform 0.6s ease, top 0.6s ease, left 0.6s ease;
+      top: 40px;
+      left: 40px;
+      opacity: 0.95;
+    }
+    .overlay.step-1::before { top: 42px; left: 42px; width: 260px; height: 240px; }
+    .overlay.step-2::before { top: 360px; left: 36px; width: 260px; height: 220px; }
+    .overlay.step-3::before { top: 360px; left: 350px; width: 280px; height: 220px; }
+    .overlay.step-4::before { top: 36px; left: 760px; width: 300px; height: 240px; }
+    .overlay .pulse {
+      position: absolute;
+      top: 110px;
+      left: 110px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(242, 201, 76, 0.95);
+      animation: pulse 1.8s infinite ease-out;
+      opacity: 0.95;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.9; }
+      70% { transform: scale(1.8); opacity: 0; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+    .demo-script {
+      display: grid;
+      gap: 20px;
+    }
+    .script-card {
+      padding: 28px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: var(--shadow);
+    }
+    .script-card h2 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      color: #ffffff;
+    }
+    .script-card p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .step-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 14px;
+    }
+    .step-list li {
+      padding: 16px 18px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--muted);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .step-list li.active {
+      background: rgba(242, 201, 76, 0.16);
+      border-color: rgba(242, 201, 76, 0.45);
+      color: #ffffff;
+    }
+    .controls {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .controls button {
+      min-width: 130px;
+    }
+    @media (max-width: 1080px) {
+      .demo-panel {
+        grid-template-columns: 1fr;
+      }
+      .overlay.step-4::before { top: 480px; left: 40px; width: 300px; height: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="brand-strip">
+      <div class="brand-block">
+        <span style="color: var(--accent); letter-spacing: 0.16em; text-transform: uppercase; font-size:0.8rem;">Tutorial demo video</span>
+        <h1>Practical Application Demo</h1>
+        <p>This page presents the application as an interactive demo. Click "Start Demo" and follow each step to show the instructor how the application works.</p>
+      </div>
+      <div class="brand-actions">
+        <a href="./index.html" class="button-secondary">Back to project</a>
+        <button id="playBtn" class="button-primary">▶️ Start Demo</button>
+      </div>
+    </header>
+
+    <main class="demo-panel">
+      <section class="demo-stage">
+        <div class="stage-label">Vue de l’application</div>
+        <div class="iframe-shell">
+          <iframe id="appFrame" src="./index.html" title="Application Travel Blog"></iframe>
+          <div class="overlay" id="overlay"><div class="pulse"></div></div>
+        </div>
+      </section>
+
+      <aside class="demo-script">
+        <div class="script-card">
+          <h2>Demo steps</h2>
+          <p id="stepText">Click "Start Demo" to begin the guided walkthrough.</p>
+          <ol class="step-list" id="stepList">
+            <li class="active">Home: introduction to the travel blog and main sections.</li>
+            <li>Itinerary: show the schedule table and daily details.</li>
+            <li>Travel Notes: present the articles and project images.</li>
+            <li>Guestbook: demonstrate entering a name and posting a message that appears instantly.</li>
+          </ol>
+          <div class="controls">
+            <button id="pauseBtn" class="button-secondary">Pause</button>
+            <button id="restartBtn" class="button-secondary">Recommencer</button>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    const playBtn = document.getElementById('playBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const restartBtn = document.getElementById('restartBtn');
+    const stepText = document.getElementById('stepText');
+    const stepList = Array.from(document.querySelectorAll('#stepList li'));
+    const overlay = document.getElementById('overlay');
+    let stepIndex = 0;
+    let timer = null;
+    const steps = [
+      {
+        text: 'Welcome to the demo: this is the blog homepage. Point out the title, navigation, and the main sections.',
+        className: 'step-1'
+      },
+      {
+        text: 'Now show the itinerary. Explain the schedule rows, expanded details, and smooth navigation.',
+        className: 'step-2'
+      },
+      {
+        text: 'Next, highlight the travel notes: each card includes an image, text, and a read-more interaction.',
+        className: 'step-3'
+      },
+      {
+        text: 'Finally, demonstrate the guestbook: enter a name, type a message, and show how it appears instantly.',
+        className: 'step-4'
+      }
+    ];
+
+    function updateStep(index) {
+      stepIndex = index;
+      stepText.textContent = steps[index].text;
+      stepList.forEach((item, i) => item.classList.toggle('active', i === index));
+      overlay.className = 'overlay ' + steps[index].className;
+    }
+
+    function nextStep() {
+      const next = (stepIndex + 1) % steps.length;
+      updateStep(next);
+    }
+
+    function startDemo() {
+      if (timer) return;
+      updateStep(0);
+      playBtn.textContent = '⏳ Démo en cours...';
+      timer = setInterval(nextStep, 5000);
+      overlay.classList.add('active');
+    }
+
+    function pauseDemo() {
+      if (!timer) return;
+      clearInterval(timer);
+      timer = null;
+      playBtn.textContent = '▶️ Reprendre la démo';
+    }
+
+    function restartDemo() {
+      if (timer) clearInterval(timer);
+      timer = null;
+      updateStep(0);
+      playBtn.textContent = '▶️ Lancer la démo';
+    }
+
+    playBtn.addEventListener('click', () => {
+      if (timer) return;
+      startDemo();
+    });
+
+    pauseBtn.addEventListener('click', pauseDemo);
+    restartBtn.addEventListener('click', restartDemo);
+  </script>
+</body>
+</html>

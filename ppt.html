@@ -1,0 +1,1052 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Travel Destination Blog Presentation</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <base href="./">
+  <style>
+    :root {
+      --flag-green: #007A5E;
+      --flag-red: #CE1126;
+      --flag-yellow: #FCD116;
+      --bg-start: #08111f;
+      --bg-mid: #0c2037;
+      --bg-end: #101d39;
+      --text: #FFD700; /* gold */
+      --panel-text: #111827; /* dark for light panels */
+      --muted: #cbd5e1;
+      --highlight: var(--flag-yellow);
+      --accent: var(--flag-red);
+      --panel: rgba(255, 255, 255, 0.08);
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(90deg, var(--flag-green) 0%, var(--flag-yellow) 50%, var(--flag-red) 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* Ensure readable text inside light panels */
+    .photo-box,
+    .title-box,
+    .brand-strip,
+    .brand-text p,
+    .slide p,
+    .photos p {
+      color: var(--panel-text);
+    }
+
+    .page-shell::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255, 215, 0, 0.06), transparent 36%);
+      pointer-events: none;
+    }
+
+    .page-shell {
+      position: relative;
+      min-height: 100vh;
+      padding: 20px 28px 120px;
+    }
+
+    .brand-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 28px;
+      padding: 24px 28px;
+      border-radius: 30px;
+      background: linear-gradient(90deg, var(--flag-green), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: var(--shadow);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 1.9rem;
+      font-weight: 900;
+      color: #111827;
+      background: linear-gradient(180deg, var(--flag-green) 0%, var(--flag-green) 33%, var(--flag-yellow) 33%, var(--flag-yellow) 66%, var(--flag-red) 66%, var(--flag-red) 100%);
+      border: 4px solid rgba(255, 215, 0, 0.75);
+      position: relative;
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.28);
+    }
+
+    .brand-mark::after {
+      content: '★';
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.6rem;
+      color: var(--flag-yellow);
+      text-shadow: 0 0 16px rgba(252, 209, 22, 0.9);
+    }
+
+    .brand-mark span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-text {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .brand-text .eyebrow {
+      color: var(--highlight);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .brand-text h1 {
+      font-size: clamp(2rem, 3.4vw, 3.2rem);
+      line-height: 1.02;
+      color: white;
+    }
+
+    .brand-text p {
+      color: var(--muted);
+      max-width: 680px;
+      line-height: 1.7;
+    }
+
+    .brand-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .brand-actions a {
+      text-decoration: none;
+    }
+
+    .button-primary,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--highlight), var(--accent));
+      color: #111827;
+    }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .button-primary:hover,
+    .button-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.24);
+    }
+
+    .slider {
+      display: flex;
+      width: max-content;
+      min-height: calc(100vh - 180px);
+      transition: transform 1s ease;
+    }
+
+    .slide {
+      width: 100vw;
+      padding: 80px 100px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+      min-height: calc(100vh - 180px);
+      position: relative;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .slide::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(252, 209, 22, 0.08), transparent 28%);
+      pointer-events: none;
+    }
+
+    .title-box {
+      max-width: 900px;
+      border: 2px solid rgba(255, 255, 255, 0.18);
+      padding: 22px 28px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .title-box h1,
+    .title-box h2 {
+      color: var(--highlight);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0;
+      font-size: clamp(2.2rem, 3.4vw, 3.6rem);
+    }
+
+    .slide p,
+    .slide li,
+    .slide blockquote,
+    .slide footer {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 920px;
+    }
+
+    ul {
+      padding-left: 24px;
+      display: grid;
+      gap: 14px;
+      list-style: none;
+    }
+
+    ul li::before {
+      content: '•';
+      color: var(--highlight);
+      margin-right: 10px;
+    }
+
+    .highlight {
+      color: var(--highlight);
+      font-weight: 800;
+    }
+
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .photos-alt {
+      margin-top: 24px;
+    }
+
+    .photo-box {
+      display: grid;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      border-radius: 34px;
+      padding: 20px;
+      color: var(--text);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .photo-box img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 26px;
+      transition: transform 0.4s ease;
+    }
+
+    .photo-box:hover img,
+    .photo-box.active img {
+      transform: scale(1.05);
+    }
+
+    .photo-box p {
+      margin: 0;
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.6;
+      cursor: pointer;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+
+    .photo-box p:hover {
+      color: var(--highlight);
+      transform: translateX(2px);
+    }
+
+    .photo-box.active {
+      background: rgba(252, 209, 22, 0.18);
+      border-color: rgba(252, 209, 22, 0.75);
+      transform: translateY(-2px);
+    }
+    .photo-box.large {
+      grid-column: span 2;
+    }
+    .photo-box.large img {
+      height: 340px;
+    }
+    .thankyou-panel {
+      background: rgba(255, 255, 255, 0.10);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 32px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+
+    .thankyou-lead {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .thankyou-subtitle {
+      color: var(--highlight);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .thankyou-panel ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .thankyou-panel li {
+      position: relative;
+      padding-left: 30px;
+      color: #e5e7eb;
+      line-height: 1.7;
+    }
+
+    .thankyou-panel li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--highlight);
+    }
+    .photo-card {
+      display: grid;
+      gap: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.08));
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 34px;
+      padding: 28px 24px;
+      color: var(--panel-text);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .photo-card .card-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      background: rgba(252, 209, 22, 0.25);
+      color: #111827;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
+    }
+
+    .slide-controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .slide-controls button {
+      min-width: 120px;
+      padding: 14px 18px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255,255,255,0.16);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .slide-controls button:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.26);
+    }
+
+    .slide-status {
+      color: var(--highlight);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .photo-box.active p {
+      color: var(--highlight);
+      font-weight: 800;
+    }
+
+    .video-card {
+      display: grid;
+      gap: 18px;
+      padding: 24px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+      max-width: 980px;
+    }
+
+    .video-frame {
+      width: 100%;
+      border-radius: 24px;
+      object-fit: cover;
+      aspect-ratio: 16 / 9;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    }
+
+    .video-caption {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .video-script {
+      display: grid;
+      gap: 16px;
+      padding: 18px 0 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .presentation-summary {
+      color: #111827;
+      line-height: 1.85;
+      margin: 20px 0;
+      font-size: 1.05rem;
+    }
+
+    .presentation-list {
+      color: #111827;
+      line-height: 1.8;
+      margin-left: 20px;
+      list-style: disc;
+    }
+
+    .presentation-note {
+      color: #111827;
+      margin-top: 22px;
+      line-height: 1.75;
+    }
+
+    .presentation-link {
+      display: inline-flex;
+      margin-top: 12px;
+    }
+
+    .video-script p {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      margin: 0;
+    }
+
+    .video-script p.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    blockquote {
+      border-left: 4px solid var(--highlight);
+      padding-left: 22px;
+      margin: 0;
+      color: var(--text);
+      font-size: 1.1rem;
+      letter-spacing: 0.01em;
+    }
+
+    blockquote footer {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-style: normal;
+    }
+
+    .controls {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .controls button {
+      min-width: 64px;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-size: 1rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.14);
+      color: var(--text);
+      cursor: pointer;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .controls button:hover {
+      transform: translateY(-2px);
+      background: rgba(252, 209, 22, 0.95);
+      color: #111827;
+    }
+
+    .counter {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.15);
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: var(--shadow);
+      z-index: 999;
+    }
+
+    @media screen and (max-width: 980px) {
+      .slide {
+        padding: 60px 48px;
+      }
+
+      .photos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .page-shell {
+        padding: 18px 18px 100px;
+      }
+    }
+
+    @media screen and (max-width: 700px) {
+      .slide {
+        padding: 40px 22px;
+      }
+
+      .photos {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-strip {
+        padding: 18px 18px;
+      }
+
+      .brand-text h1 {
+        font-size: 2rem;
+      }
+
+      .brand-actions {
+        justify-content: center;
+      }
+    }
+  </style>
+  <script>
+    if (window.location.pathname.match(/\.html\/+$/)) {
+      const cleanPath = window.location.pathname.replace(/\/+$/, '');
+      window.location.replace(cleanPath + window.location.search + window.location.hash);
+    }
+  </script>
+</head>
+
+<body>
+<div class="page-shell">
+    <div class="brand-strip">
+      <div class="brand-block">
+        <div class="brand-mark">NKYH</div>
+        <div class="brand-text">
+          <span class="eyebrow">NKYH New Generation</span>
+          <h1>Project Presentation</h1>
+          <p>An elegant and immersive slideshow designed to complement the travel blog with premium visuals and a clear narrative.</p>
+        </div>
+      </div>
+      <div class="brand-actions">
+        <a href="./index.html"><button class="button-primary">🚀 Entrer dans le projet</button></a>
+        <a href="./demo.html"><button class="button-secondary">▶️ Démo pratique</button></a>
+        <a href="./readme.html"><button class="button-secondary">📄 Lire le README</button></a>
+      </div>
+    </div>
+
+    <div class="counter" id="counter">1 / 21</div>
+
+    <div class="slider" id="slider">
+
+  <!-- Slide 1 : About Me -->
+  <div class="slide">
+    <div class="title-box"><h1>🌍 Travel Destination Blog</h1></div>
+    <h2>👤 About Me</h2>
+    <p><strong>Name:</strong> [Your Name]</p>
+    <p><strong>Major:</strong> Software Engineering</p>
+    <p><strong>Location:</strong> Global / Remote</p>
+    <p style="margin-top:12px; color: #ffffff; font-weight:700;">I am a dedicated and hardworking student committed to learning, collaboration, and delivering high-quality software.</p>
+
+    <div class="photos">
+      <div class="photo-box">
+        <img src="./image/photo1.jpg" alt="Personal photo">
+        <p><strong>My Travel Story</strong></p>
+      </div>
+      <div class="photo-box">
+        <img src="./image/photo3.jpg" alt="Personal photo 2">
+        <p><strong>Planning & Memories</strong></p>
+      </div>
+      <div class="photo-box">
+        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=80" alt="Map and compass design">
+        <p><strong>Destination</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 : Presentation text -->
+  <div class="slide">
+    <div class="title-box"><h2>🎙️ Project Overview</h2></div>
+    <p>NKY Travel is a modern, responsive single-page application (SPA) built with React, TypeScript, Vite, and Tailwind CSS. It serves as a comprehensive platform for travel enthusiasts to discover destinations, share experiences, and build a community around travel adventures.</p>
+    <div class="video-card">
+      <p class="presentation-summary">
+        The application unites travel discovery, itinerary planning, trip storytelling, photo sharing, and community engagement in one seamless, dynamic interface. Every component is optimized for speed, accessibility, and mobile-first design. Users can explore curated destinations across Cameroon and the world, view detailed travel information, share personal travel experiences, and interact with other travelers through comments, ratings, and appreciation features.
+      </p>
+      <ul class="presentation-list">
+        <li>🏗️ Modular React architecture with reusable components, hooks, and TypeScript for type safety and scalability</li>
+        <li>📸 Rich media support: image galleries, photo uploads, video players with optimized playback, and Spotboard for community sharing</li>
+        <li>🔐 Secure authentication via Supabase with email confirmation, session management, and role-based access control</li>
+        <li>🌐 Multi-language support (English & French) with dynamic translation across the entire application</li>
+        <li>💬 Real-time interactions: comments, instant feedback, guestbook entries, and live appreciation counts</li>
+        <li>📱 Fully responsive design with smooth animations and optimized performance for all devices</li>
+      </ul>
+      <p class="presentation-note">This presentation outlines the technical architecture, core features, user workflows, design patterns, and how each module contributes to a professional, modern travel experience.</p>
+      <a href="./demo.html" class="button-secondary presentation-link">▶️ Open Practical Demo</a>
+    </div>
+  </div>
+
+  <!-- Slide 3 : What is this project? -->
+  <div class="slide">
+    <div class="title-box"><h2>📌 What is this project?</h2></div>
+    <p>
+      NKY Travel is a Single Page Application (SPA) designed as a complete travel ecosystem. It combines discovery, planning, storytelling, and community engagement in one cohesive platform. Users can explore travel destinations, access detailed itineraries, view user-generated travel content, capture and share photos through a spotboard, and interact with a vibrant community of travelers.
+    </p>
+    <p>
+      The project prioritizes user experience with instant page transitions, smooth animations, and mobile-first design. All content is organized intuitively: browse destinations by category (beaches, mountains, cities, culture), read and write travel experiences, explore galleries of user photos and videos, and participate in real-time discussions.
+    </p>
+    <p>
+      Behind the scenes, the platform leverages modern web technologies: React for component-based UI, TypeScript for robust code quality, Tailwind CSS for responsive styling, Supabase for backend services and authentication, and Vite for optimized builds. The entire application dynamically translates between English and French, ensuring accessibility for a global audience.
+    </p>
+  </div>
+
+  <!-- Slide 4 : Project Modules -->
+  <div class="slide">
+    <div class="title-box"><h2>🧩 Project Modules</h2></div>
+    <ul>
+      <li>🗺️ <strong>Destination Explorer:</strong> Browse curated travel destinations with hero videos, detailed descriptions, ratings, reviews, best travel times, temperature info, and duration estimates. Filter by Cameroon or global destinations with smooth carousel navigation.</li>
+      <li>📸 <strong>Travel Photo Gallery:</strong> Explore a masonry grid of user-submitted and curated photos. Each photo includes photographer info, location, likes, views, and category tags. Click to expand, view full details, and leave comments with real-time appreciation counts.</li>
+      <li>👥 <strong>Travelers Gallery:</strong> Discover other travelers ranked by appreciation count. View their travel count, latest journey preview, and click to explore their full travel profile with all their posts and experiences.</li>
+      <li>📌 <strong>Spotboard:</strong> Advanced photo/video sharing community feature. Capture photos, upload media, add titles and locations, rate spots, leave comments, and see live appreciation summaries. Includes modal lightbox for full-screen viewing.</li>
+      <li>🎙️ <strong>Presentation (PPT):</strong> This slideshow provides an overview of the project, features, technical stack, use cases, and calls-to-action. Includes autoplay with pause/resume controls and smooth slide transitions.</li>
+      <li>📚 <strong>Documentation:</strong> Comprehensive README with setup instructions, feature explanations, troubleshooting guides, and authentication flow documentation. Accessible from within the app.</li>
+    </ul>
+  </div>
+
+  <!-- Slide 4 : Technologies Used -->
+  <div class="slide">
+    <div class="title-box"><h2>🛠️ Technologies Used</h2></div>
+    <ul>
+      <li>⚛️ <strong>React 18:</strong> Component-based UI library for building interactive user interfaces with reusable, modular components</li>
+      <li>📘 <strong>TypeScript:</strong> Statically typed JavaScript for safer, more maintainable code with better IDE support</li>
+      <li>⚡ <strong>Vite:</strong> Ultra-fast build tool and dev server with hot module replacement for lightning-quick development</li>
+      <li>🎨 <strong>Tailwind CSS:</strong> Utility-first CSS framework for rapid, responsive, and consistent design implementation</li>
+      <li>🔐 <strong>Supabase:</strong> Open-source Firebase alternative providing PostgreSQL database, authentication, real-time subscriptions, and REST APIs</li>
+      <li>🌐 <strong>HTML5:</strong> Semantic structure, accessibility, and modern web standards</li>
+      <li>📦 <strong>npm/Node.js:</strong> Package management and development environment setup</li>
+      <li>💻 <strong>ES6+ JavaScript:</strong> Modern syntax, async/await, destructuring, and functional programming patterns</li>
+    </ul>
+  </div>
+
+  <!-- ✅ Slide 5 : Project Images -->
+  <div class="slide">
+    <div class="title-box"><h2>📸 Project Images</h2></div>
+    <p>Each image below represents a functional module of the Travel Destination Blog.</p>
+
+    <div class="photos">
+      <div class="photo-box">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80" alt="Destination overview">
+        <p><strong>Destination Overview</strong><br>Map + Carousel</p>
+      </div>
+      <div class="photo-box">
+        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=80" alt="Travel itinerary sketch">
+        <p><strong>Itinerary Module</strong><br>Daily schedule with expandable rows</p>
+      </div>
+      <div class="photo-box">
+        <img src="https://images.unsplash.com/photo-1495567720989-cebdbdd97913?auto=format&fit=crop&w=1200&q=80" alt="Travel notes writing">
+        <p><strong>Travel Notes</strong><br>Articles with "Read More / Less"</p>
+      </div>
+      <div class="photo-box">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80" alt="Guestbook messages">
+        <p><strong>Guestbook</strong><br>Messages appear instantly</p>
+      </div>
+      <div class="photo-box">
+        <img src="https://images.unsplash.com/photo-1516707570260-30af5f379ccc?auto=format&fit=crop&w=1200&q=80" alt="Like button illustration">
+        <p><strong>Like Button</strong><br>Changes color and counts</p>
+      </div>
+      <div class="photo-box">
+        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=80" alt="Mobile responsive design">
+        <p><strong>Responsive Design</strong><br>Works on all devices</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 6 : How does it work? -->
+  <div class="slide">
+    <div class="title-box"><h2>⚙️ How does it work?</h2></div>
+    <p>
+      NKY Travel uses a reactive, component-driven front-end architecture. When a user interacts with the application—browsing destinations, uploading photos, or leaving comments—React's state management system instantly updates the UI without requiring page reloads. This creates a fluid, app-like experience in the browser.
+    </p>
+    <ul>
+      <li>🎯 <strong>Smart Routing:</strong> Client-side navigation between Home, Destinations, Travelers Gallery, Spotboard, and Presentation pages without full page refreshes</li>
+      <li>⚡ <strong>State Management:</strong> Centralized state for user authentication, travel data, comments, and media, updated reactively across all components</li>
+      <li>📡 <strong>Backend Integration:</strong> Supabase provides real-time database, user authentication with email confirmation, and secure API endpoints</li>
+      <li>🎨 <strong>Dynamic Rendering:</strong> React components re-render only affected parts of the UI when data changes, optimizing performance</li>
+      <li>🌍 <strong>Multi-Language Support:</strong> Translation service hooks enable instant language switching across all text and UI elements</li>
+      <li>📸 <strong>Media Handling:</strong> Images and videos are lazy-loaded, optimized with responsive sizing, and cached for fast display</li>
+      <li>💾 <strong>Data Persistence:</strong> User sessions and preferences are stored in local state, with travel data synced to Supabase backend</li>
+      <li>✅ <strong>Instant Feedback:</strong> All user actions (likes, comments, uploads) provide immediate visual confirmation and update live counters</li>
+    </ul>
+  </div>
+
+  <!-- Slide 7 : Concrete Examples -->
+  <div class="slide">
+    <div class="title-box"><h2>🧩 Application Features & Examples</h2></div>
+    <ul>
+      <li>🎥 <strong>Hero Videos:</strong> Destination pages autoplay optimized videos with muted audio, preloading, and poster thumbnails for instant display</li>
+      <li>🌍 <strong>Destination Cards:</strong> Each destination shows ratings, review counts, best travel seasons, temperature ranges, and duration. Users can like, save, and filter by country.</li>
+      <li>💖 <strong>Appreciation System:</strong> Like button changes color, increments counter, and syncs across all views. Real-time appreciation summaries on gallery and spotboard.</li>
+      <li>📋 <strong>Expandable Details:</strong> Click destinations or photos to see full content in modal dialogs with detailed descriptions, highlights, and interactive controls.</li>
+      <li>🗣️ <strong>Comments & Ratings:</strong> Users can leave comments on destinations, photos, and spotboard posts with star ratings. Comments appear instantly with author avatars and timestamps.</li>
+      <li>📸 <strong>Photo Upload & Gallery:</strong> Spotboard allows photo/video capture via device camera or file upload. Gallery displays photos in a responsive masonry layout with click-to-enlarge modals.</li>
+      <li>🌐 <strong>Language Toggle:</strong> Switch between English and French with one click. All content—UI text, destination descriptions, comments—translates instantly without page reload.</li>
+      <li>📱 <strong>Responsive Layout:</strong> Seamless experience on desktop, tablet, and mobile with adaptive grid layouts, collapsible menus, and touch-friendly controls.</li>
+      <li>🔐 <strong>User Authentication:</strong> Sign up with email confirmation, secure login, and persistent sessions. Only authenticated users can post reviews, upload photos, and comment.</li>
+    </ul>
+  </div>
+
+  <!-- Slide 8 : Problems Solved -->
+  <div class="slide">
+    <div class="title-box"><h2>🚨 Challenges & Solutions</h2></div>
+    <ul>
+      <li>❌ <strong>Slow Navigation:</strong> ✅ Solved with SPA architecture—no full page reloads, instant client-side routing between sections</li>
+      <li>❌ <strong>Poor Mobile Experience:</strong> ✅ Solved with mobile-first responsive design, touch-friendly controls, and adaptive layouts for all screen sizes</li>
+      <li>❌ <strong>Static Content:</strong> ✅ Solved with dynamic state management and real-time data syncing to Supabase backend</li>
+      <li>❌ <strong>Lack of Interactivity:</strong> ✅ Solved with instant feedback loops—users see their actions reflected immediately (likes, comments, uploads)</li>
+      <li>❌ <strong>Poor Organization & Discoverability:</strong> ✅ Solved with intuitive navigation, categorized galleries, advanced filtering, and search capabilities</li>
+      <li>❌ <strong>Authentication Friction:</strong> ✅ Solved with Supabase email confirmation, persistent sessions, and seamless sign-in/sign-up flow</li>
+      <li>❌ <strong>Language Barrier:</strong> ✅ Solved with multi-language support (English & French) translating dynamically across the entire UI</li>
+      <li>❌ <strong>Media Loading Delays:</strong> ✅ Solved with lazy loading, image optimization, video preloading, and responsive image sizing</li>
+      <li>❌ <strong>Complex User Flows:</strong> ✅ Solved with clear user interface, inline help, and intuitive workflows from discovery to sharing</li>
+    </ul>
+  </div>
+
+  <!-- Slide 9 : Importance -->
+  <div class="slide">
+    <div class="title-box"><h2>📈 Impact & Learning Outcomes</h2></div>
+    <ul>
+      <li>🎯 <strong>Modern Front-End Skills:</strong> Mastery of React, TypeScript, and component-based architecture for building scalable web applications</li>
+      <li>🖱️ <strong>Full-Stack Development:</strong> Understanding of backend integration with Supabase, authentication flows, and real-time data synchronization</li>
+      <li>🗜️ <strong>Responsive Design:</strong> Expertise in mobile-first development, accessibility standards, and CSS Grid/Flexbox for all device types</li>
+      <li>🧐 <strong>Software Architecture:</strong> Experience designing modular, maintainable code with separation of concerns, custom hooks, and reusable components</li>
+      <li>📘 <strong>State Management:</strong> Proficiency in React hooks (useState, useContext, useEffect) and managing complex application state</li>
+      <li>🌍 <strong>Real-World Application:</strong> A production-ready portfolio project demonstrating professional coding standards, documentation, and deployment readiness</li>
+      <li>💋 <strong>Team Collaboration:</strong> Experience working with stakeholders, gathering requirements, iterating on feedback, and delivering user-focused solutions</li>
+      <li>💸 <strong>Career Preparation:</strong> Demonstrated ability to build feature-rich applications that prepare me for roles in web development, software engineering, and tech leadership</li>
+    </ul>
+  </div>
+
+  <!-- Slide 10 : Special Thanks -->
+  <div class="slide">
+    <div class="title-box"><h2>🙏 Special Thanks</h2></div>
+
+    <div class="photos">
+      <div class="photo-box">
+        <img src="./image/photo1.jpg" alt="Personal photo">
+        <p><strong>Personal journey</strong><br>My own story and inspiration behind this project.</p>
+      </div>
+      <div class="photo-box">
+        <img src="./image/my family.jpg" alt="Family photo">
+        <p><strong>Family support</strong><br>Thank you to my family for love, motivation, and encouragement.</p>
+      </div>
+      <div class="photo-box large">
+        <img src="./image/class made.jpg" alt="Classmates photo">
+        <p><strong>Classmates</strong><br>Merci à mes camarades de classe pour vos retours honnêtes, votre esprit d'équipe et votre soutien continu.</p>
+      </div>
+      <div class="photo-box">
+        <img src="./image/mama_winnie.jpg" alt="Winnie support">
+        <p><strong>Winnie support</strong><br>Thank you for your encouragement in China and your steady presence through the project.</p>
+      </div>
+      <div class="photo-box">
+        <img src="./image/girlfriend.jpg" alt="Girlfriend support">
+        <p><strong>My girlfriend</strong><br>Thank you for your patience, caring support, and belief in me throughout every late night and hard task.</p>
+      </div>
+    </div>
+
+    <div class="photos photos-alt">
+      <div class="photo-box">
+        <img src="./image/teacher.svg" alt="Teacher illustration">
+        <p><strong>Teacher</strong><br>Thank you for your guidance, knowledge, and encouragement.</p>
+      </div>
+      <div class="photo-box">
+        <img src="./image/universite.jpg" alt="University support">
+        <p><strong>My institution</strong><br>Thank you for the learning environment and the resources provided.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 10.5 : Remerciements (French) -->
+  <div class="slide">
+    <div class="title-box"><h2>🤝 Remerciements</h2></div>
+
+    <div class="thankyou-panel">
+      <p class="thankyou-lead">Je tiens à exprimer ma profonde gratitude aux personnes et institutions suivantes pour leur soutien inestimable.</p>
+
+      <div class="thankyou-subtitle">Avec toute ma reconnaissance :</div>
+      <ul>
+        <li><strong>Le Professeur :</strong> Merci pour vos conseils précis, votre disponibilité constante et votre enseignement rigoureux. Vos retours ont guidé chaque étape du développement et m'ont aidé à améliorer la qualité du travail.</li>
+        <li><strong>L'Université :</strong> Merci pour l'environnement académique, les ressources techniques et les opportunités d'apprentissage. Ce projet a pu se réaliser grâce à l'encadrement, aux laboratoires et aux infrastructures mis à disposition.</li>
+        <li><strong>Mama Winnie et son mari :</strong> Merci pour votre soutien moral et matériel en Chine. Votre générosité, vos encouragements continus et vos conseils chaleureux ont été essentiels à ma motivation.</li>
+        <li><strong>Mes camarades :</strong> Merci pour vos retours honnêtes, votre entraide et les moments partagés durant le développement. Votre travail collectif et vos idées ont enrichi le projet à chaque étape.</li>
+        <li><strong>Ma petite amie :</strong> Merci pour ta patience, ton amour et ton soutien indéfectible. Ce projet est aussi le fruit de ta présence constante, de ta confiance et de ta motivation partagée.</li>
+      </ul>
+
+      <p class="presentation-note">Les messages ci-dessus sont réservés et sincères ; chaque remerciement est accompagné d'un encadré photo ci-dessous pour illustrer la personne ou le groupe.</p>
+
+      <div class="photos photos-alt" style="margin-top:18px;">
+        <div class="photo-card">
+          <div class="card-icon">👩‍🏫</div>
+          <h3>Professeur</h3>
+          <p>Cadre réservé pour la photo du professeur.</p>
+        </div>
+        <div class="photo-card">
+          <div class="card-icon">🏫</div>
+          <h3>Université</h3>
+          <p>Cadre réservé pour la photo de l'établissement.</p>
+        </div>
+        <div class="photo-card">
+          <div class="card-icon">🤝</div>
+          <h3>Mama Winnie & Son Mari</h3>
+          <p>Cadre réservé pour leur photo et message.</p>
+        </div>
+        <div class="photo-card">
+          <div class="card-icon">👥</div>
+          <h3>Camarades</h3>
+          <p>Cadre réservé pour la photo de mes camarades.</p>
+        </div>
+        <div class="photo-card">
+          <div class="card-icon">💖</div>
+          <h3>Ma Petite Amie</h3>
+          <p>Cadre réservé pour sa photo et un message personnel.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 11 : Philosophical Quotes -->
+  <div class="slide">
+    <div class="title-box"><h2>📚 Quotes on Education and Family</h2></div>
+
+    <blockquote>
+      “Education is the most powerful weapon which you can use to change the world.”
+      <footer>— Nelson Mandela</footer>
+    </blockquote>
+
+    <blockquote>
+      “A good teacher can inspire hope, ignite the imagination, and instill a love of learning.”
+      <footer>— Brad Henry</footer>
+    </blockquote>
+
+    <blockquote>
+      “The art of teaching is the art of assisting discovery.”
+      <footer>— Mark Van Doren</footer>
+    </blockquote>
+
+    <blockquote>
+      “Educating the mind without educating the heart is no education at all.”
+      <footer>— Aristotle</footer>
+    </blockquote>
+
+    <blockquote>
+      “Family is the first school for young children, and parents are powerful models.”
+      <footer>— Alice Sterling Honig</footer>
+    </blockquote>
+  </div>
+
+  <!-- Slide 12 : Conclusion -->
+  <div class="slide">
+    <div class="title-box"><h2>� Final Thoughts & Call to Action</h2></div>
+    <p>
+      This project represents my dedication to learning, innovation, and excellence in software engineering. NKY Travel demonstrates not just technical capabilities, but a commitment to building user-focused, accessible, and maintainable applications that solve real-world problems.
+    </p>
+    <p>
+      Throughout this journey, I have grown as a developer and as an individual. I have learned the value of clean code, responsive design, collaborative problem-solving, and perseverance through technical challenges. This application is a testament to the support of my professors, family, friends, and mentors who believed in my potential.
+    </p>
+    <p style="margin-top: 24px; font-size: 1.15rem; color: #fff; font-weight: 700;">
+      🚀 <span class="highlight">Ready to explore? Try the app now!🚀</span>
+    </p>
+    <div style="margin-top: 20px; display: flex; gap: 14px; flex-wrap: wrap;">
+      <a href="./index.html" style="text-decoration: none;"><button class="button-primary" style="padding: 14px 28px; font-size: 1rem;">Explore NKY Travel</button></a>
+      <a href="./readme.html" style="text-decoration: none;"><button class="button-secondary" style="padding: 14px 28px; font-size: 1rem;">Read Documentation</button></a>
+    </div>
+    <p style="margin-top: 32px; color: #FFD700; font-weight: 800; text-align: center; font-size: 1.2rem;">
+      Thank you for your time and interest! 🙏
+    </p>
+  </div>
+
+</div>
+</div>
+<!-- Navigation -->
+<div class="controls">
+  <button onclick="prevSlide()">⬅</button>
+  <button onclick="nextSlide()">➡</button>
+</div>
+<div class="slide-controls">
+  <button id="pauseBtn">⏸ Pause</button>
+  <button id="playBtn" disabled>▶️ Play</button>
+  <span class="slide-status" id="slideStatus">Autoplay active</span>
+</div>
+
+<script>
+  const slider = document.getElementById('slider');
+  let index = 0;
+  const totalSlides = slider.children.length;
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let autoSlide = null;
+  let isAutoPlaying = true;
+
+  const pauseBtn = document.getElementById('pauseBtn');
+  const playBtn = document.getElementById('playBtn');
+  const slideStatus = document.getElementById('slideStatus');
+
+  function updateSlider() {
+    slider.style.transform = `translateX(-${index * 100}vw)`;
+    document.getElementById('counter').textContent = `${index + 1} / ${totalSlides}`;
+  }
+
+  function nextSlide() {
+    index = (index + 1) % totalSlides;
+    updateSlider();
+  }
+
+  function prevSlide() {
+    index = (index - 1 + totalSlides) % totalSlides;
+    updateSlider();
+  }
+
+  function startAutoSlide() {
+    if (autoSlide) return;
+    autoSlide = setInterval(nextSlide, 15000);
+    isAutoPlaying = true;
+    pauseBtn.disabled = false;
+    playBtn.disabled = true;
+    slideStatus.textContent = 'Autoplay active';
+  }
+
+  function stopAutoSlide() {
+    if (!autoSlide) return;
+    clearInterval(autoSlide);
+    autoSlide = null;
+    isAutoPlaying = false;
+    pauseBtn.disabled = true;
+    playBtn.disabled = false;
+    slideStatus.textContent = 'Autoplay paused';
+  }
+
+  pauseBtn.addEventListener('click', () => {
+    stopAutoSlide();
+  });
+
+  playBtn.addEventListener('click', () => {
+    startAutoSlide();
+  });
+
+  slides.forEach(slide => {
+    slide.addEventListener('mouseenter', stopAutoSlide);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+
+  document.querySelectorAll('.photo-box p, .photo-card h3').forEach(caption => {
+    caption.addEventListener('click', () => {
+      const photoBox = caption.closest('.photo-box, .photo-card');
+      if (photoBox) photoBox.classList.toggle('active');
+    });
+  });
+
+  updateSlider();
+  startAutoSlide();
+</script>
+
+</body>
+</html>
+  
