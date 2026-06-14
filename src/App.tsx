@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { Menu, X, LogOut, Plus, Home, Globe, Camera, Users, Star, Image, MapPin, Compass } from 'lucide-react';
 import { useAuth, useTravels, useAppreciate, useTranslation } from '@/modules/shared/hooks';
-import { LANGUAGES, STORAGE_KEYS } from '@/modules/shared/constants';
+import { LANGUAGES, STORAGE_KEYS, DEFAULT_LANGUAGE } from '@/modules/shared/constants';
 import type { User } from '@/modules/shared/types';
 import { WelcomePage, AuthForm, LanguageModal } from '@/modules/presentation/components';
 import { TravelNotesPublisher } from '@/modules/travel-notes/components';
@@ -10,7 +10,7 @@ import { OverviewFeed } from '@/modules/overview/components';
 import { SpotboardGallery, CameraCapture, EnhancedCameraCapture } from '@/modules/spotboard/components';
 import { TravelerProfile, TravelerGallery, TravelPhotosGallery, DestinationsExplorer } from '@/modules/travelers/components';
 import { useSpotboardPhotos } from '@/modules/spotboard/hooks';
-import { CameroonStar } from '@/modules/shared/components';
+import { CameroonStar, MusicPlayer } from '@/modules/shared/components';
 import Starfield from '@/modules/shared/components/Starfield';
 
 type PageType = 'welcome' | 'auth' | 'overview' | 'travel-notes' | 'spotboard' | 'traveler' | 'gallery' | 'photos' | 'destinations';
