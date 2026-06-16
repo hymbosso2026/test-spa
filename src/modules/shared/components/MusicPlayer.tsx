@@ -41,10 +41,23 @@ interface MusicPlayerProps {
 export function MusicPlayer({ language }: MusicPlayerProps) {
   const t = useTranslation(language);
   const [selectedTrack, setSelectedTrack] = useState<Track>(TRACKS[0]);
+  const [customTrackUrl, setCustomTrackUrl] = useState<string>('');
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState<number>(100);
   const [muted, setMuted] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const customTrack: Track | null = customTrackUrl
+    ? {
+        id: 'custom',
+        title: 'Piste personnalisée',
+        artist: 'Lien audio externe',
+        src: customTrackUrl,
+        description: 'Lecture du lien audio que vous avez fourni.',
+      }
+    : null;
+
+  const currentTrack = customTrack ?? selectedTrack;
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -64,7 +77,7 @@ export function MusicPlayer({ language }: MusicPlayerProps) {
         .then(() => setIsPlaying(true))
         .catch(() => setIsPlaying(false));
     }
-  }, [selectedTrack, isPlaying]);
+  }, [currentTrack, isPlaying, volume, muted]);
 
   // load persisted volume/mute on mount
   useEffect(() => {
@@ -80,7 +93,13 @@ export function MusicPlayer({ language }: MusicPlayerProps) {
   }, []);
 
   const handleSelectTrack = (track: Track) => {
+    setCustomTrackUrl('');
     setSelectedTrack(track);
+    setIsPlaying(true);
+  };
+
+  const handlePlayCustomTrack = () => {
+    if (!customTrackUrl) return;
     setIsPlaying(true);
   };
 
@@ -156,24 +175,49 @@ export function MusicPlayer({ language }: MusicPlayerProps) {
         </div>
       </div>
 
-      <div className="mt-5 grid gap-3 md:grid-cols-3">
-        {TRACKS.map((track) => (
-          <button
-            key={track.id}
-            type="button"
-            onClick={() => handleSelectTrack(track)}
-            className={`rounded-3xl border p-4 text-left transition-all hover:shadow-xl ${selectedTrack.id === track.id ? 'border-[#FCD116] bg-[#FCD116]/10 shadow-lg' : 'border-gray-200 bg-white'}`}
-          >
-            <div className="flex items-center justify-between gap-2">
-              <div>
-                <p className="text-sm font-bold text-gray-900">{track.title}</p>
-                <p className="text-xs text-gray-500">{track.artist}</p>
+      <div className="mt-5 space-y-4">
+        <div className="grid gap-3 md:grid-cols-3">
+          {TRACKS.map((track) => (
+            <button
+              key={track.id}
+              type="button"
+              onClick={() => handleSelectTrack(track)}
+              className={`rounded-3xl border p-4 text-left transition-all hover:shadow-xl ${currentTrack.id === track.id ? 'border-[#FCD116] bg-[#FCD116]/10 shadow-lg' : 'border-gray-200 bg-white'}`}
+            >
+              <div className="flex items-center justify-between gap-2">
+                <div>
+                  <p className="text-sm font-bold text-gray-900">{track.title}</p>
+                  <p className="text-xs text-gray-500">{track.artist}</p>
+                </div>
+                <span className="text-xs font-semibold text-[#007A5E]">{currentTrack.id === track.id ? '✓' : ''}</span>
               </div>
-              <span className="text-xs font-semibold text-[#007A5E]">{selectedTrack.id === track.id ? '✓' : ''}</span>
-            </div>
-            <p className="mt-3 text-sm text-gray-600">{track.description}</p>
-          </button>
-        ))}
+              <p className="mt-3 text-sm text-gray-600">{track.description}</p>
+            </button>
+          ))}
+        </div>
+
+        <div className="rounded-3xl border border-gray-200 bg-white p-4">
+          <label className="block text-sm font-semibold text-gray-700">Lien audio personnalisé</label>
+          <input
+            type="url"
+            value={customTrackUrl}
+            onChange={(e) => setCustomTrackUrl(e.target.value)}
+            placeholder="Collez ici un lien mp3 ou audio valide"
+            className="mt-2 w-full rounded-2xl border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#007A5E]/30"
+          />
+          <div className="mt-3 flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={handlePlayCustomTrack}
+              disabled={!customTrackUrl}
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#007A5E] via-[#CE1126] to-[#FCD116] px-4 py-2 text-white font-black shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              <Play size={16} /> Play custom link
+            </button>
+            <span className="text-xs text-gray-500">Utilisez une URL MP3 directe pour écouter un vrai morceau.</span>
+          </div>
+          <p className="mt-2 text-xs text-gray-500">Vous pouvez coller un lien direct vers un fichier audio légal. Si vous n'avez pas de lien, utilisez une piste par défaut.</p>
+        </div>
       </div>
 
       <div className="mt-5 rounded-3xl overflow-hidden border border-gray-200 bg-gray-100">
@@ -190,7 +234,7 @@ export function MusicPlayer({ language }: MusicPlayerProps) {
       </div>
 
       <div className="mt-4 text-sm text-gray-500">
-        <span className="font-semibold text-gray-700">{t('currentTrack')}:</span> {selectedTrack.title}
+        <span className="font-semibold text-gray-700">{t('currentTrack')}:</span> {currentTrack.title}
       </div>
     </section>
   );
