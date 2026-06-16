@@ -228,7 +228,7 @@ export function MusicPlayer({ language }: MusicPlayerProps) {
           preload="metadata"
           onEnded={() => setIsPlaying(false)}
         >
-          <source src={selectedTrack.src} type="audio/mpeg" />
+          <source src={currentTrack.src} type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
       </div>

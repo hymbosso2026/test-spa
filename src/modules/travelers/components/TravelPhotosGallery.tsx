@@ -30,7 +30,7 @@ interface Comment {
   likes: number;
 }
 
-// Cameroun photos from Pexels + international travel photos
+// Photos du Cameroun pour la galerie
 const TRAVEL_PHOTOS: TravelPhoto[] = [
   {
     id: 'm1',
@@ -60,8 +60,8 @@ const TRAVEL_PHOTOS: TravelPhoto[] = [
   },
   {
     id: '1',
-    url: 'https://images.pexels.com/photos/5833873/pexels-photo-5833873.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    thumbnail: 'https://images.pexels.com/photos/5833873/pexels-photo-5833873.jpeg?auto=compress&cs=tinysrgb&w=400',
+    url: 'https://source.unsplash.com/1200x800/?yaounde,cameroon',
+    thumbnail: 'https://source.unsplash.com/400x300/?yaounde,cameroon',
     title: 'Fete de la Jeunesse',
     location: 'Yaounde, Cameroun',
     photographer: 'Kamga Paul',
@@ -73,9 +73,9 @@ const TRAVEL_PHOTOS: TravelPhoto[] = [
   },
   {
     id: '2',
-    url: 'https://images.pexels.com/photos/3843885/pexels-photo-3843885.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    thumbnail: 'https://images.pexels.com/photos/3843885/pexels-photo-3843885.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Bataille de Ngondo',
+    url: 'https://source.unsplash.com/1200x800/?douala,cameroon',
+    thumbnail: 'https://source.unsplash.com/400x300/?douala,cameroon',
+    title: 'Marche central de Douala',
     location: 'Douala, Cameroun',
     photographer: 'Emilienne Mbarga',
     avatar: 'EM',
@@ -86,10 +86,10 @@ const TRAVEL_PHOTOS: TravelPhoto[] = [
   },
   {
     id: '3',
-    url: 'https://images.pexels.com/photos/161815/santorini-oia-greece-travel-161815.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    thumbnail: 'https://images.pexels.com/photos/161815/santorini-oia-greece-travel-161815.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Santorin Paradisiaque',
-    location: 'Santorin, Grece',
+    url: 'https://source.unsplash.com/1200x800/?kribi,cameroon',
+    thumbnail: 'https://source.unsplash.com/400x300/?kribi,cameroon',
+    title: 'Plage de Kribi',
+    location: 'Kribi, Cameroun',
     photographer: 'Sophie Laurent',
     avatar: 'SL',
     likes: 7845,
@@ -99,10 +99,10 @@ const TRAVEL_PHOTOS: TravelPhoto[] = [
   },
   {
     id: '4',
-    url: 'https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    thumbnail: 'https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Safari Kenyane',
-    location: 'Masai Mara, Kenya',
+    url: 'https://source.unsplash.com/1200x800/?waza,cameroon',
+    thumbnail: 'https://source.unsplash.com/400x300/?waza,cameroon',
+    title: 'Safari a Waza',
+    location: 'Reserve de Waza, Cameroun',
     photographer: 'James Omondi',
     avatar: 'JO',
     likes: 5678,
@@ -112,10 +112,10 @@ const TRAVEL_PHOTOS: TravelPhoto[] = [
   },
   {
     id: '5',
-    url: 'https://images.pexels.com/photos/3155667/pexels-photo-3155667.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    thumbnail: 'https://images.pexels.com/photos/3155667/pexels-photo-3155667.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Plages de Zanzibar',
-    location: 'Zanzibar, Tanzanie',
+    url: 'https://source.unsplash.com/1200x800/?limbe,cameroon',
+    thumbnail: 'https://source.unsplash.com/400x300/?limbe,cameroon',
+    title: 'Plage a Limbe',
+    location: 'Limbe, Cameroun',
     photographer: 'Aisha Mbwana',
     avatar: 'AM',
     likes: 4234,
@@ -125,23 +125,23 @@ const TRAVEL_PHOTOS: TravelPhoto[] = [
   },
   {
     id: '6',
-    url: 'https://images.pexels.com/photos/3250444/pexels-photo-3250444.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    thumbnail: 'https://images.pexels.com/photos/3250444/pexels-photo-3250444.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Coucher de Soleil',
-    location: 'Santorin, Grece',
+    url: 'https://source.unsplash.com/1200x800/?sunset,cameroon',
+    thumbnail: 'https://source.unsplash.com/400x300/?sunset,cameroon',
+    title: 'Coucher de Soleil a Limbé',
+    location: 'Limbé, Cameroun',
     photographer: 'Nikos Papadou',
     avatar: 'NP',
     likes: 8932,
     views: 45600,
-    category: 'sunset',
+    category: 'nature',
     width: 800, height: 600,
   },
   {
     id: '7',
-    url: 'https://images.pexels.com/photos/2387871/pexels-photo-2387871.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    thumbnail: 'https://images.pexels.com/photos/2387871/pexels-photo-2387871.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Explore Tokyo',
-    location: 'Tokyo, Japon',
+    url: 'https://source.unsplash.com/1200x800/?foumban,cameroon',
+    thumbnail: 'https://source.unsplash.com/400x300/?foumban,cameroon',
+    title: 'Ville de Foumban',
+    location: 'Foumban, Cameroun',
     photographer: 'Yuki Tanaka',
     avatar: 'YT',
     likes: 6123,
@@ -151,36 +151,36 @@ const TRAVEL_PHOTOS: TravelPhoto[] = [
   },
   {
     id: '8',
-    url: 'https://images.pexels.com/photos/1000653/pexels-photo-1000653.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    thumbnail: 'https://images.pexels.com/photos/1000653/pexels-photo-1000653.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Mediterranee',
-    location: 'Positano, Italie',
+    url: 'https://source.unsplash.com/1200x800/?yaounde,market',
+    thumbnail: 'https://source.unsplash.com/400x300/?yaounde,market',
+    title: 'Marche de Yaounde',
+    location: 'Yaounde, Cameroun',
     photographer: 'Giulia Rossi',
     avatar: 'GR',
     likes: 7545,
     views: 39800,
-    category: 'mer',
+    category: 'culture',
     width: 800, height: 600,
   },
   {
     id: '9',
-    url: 'https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    thumbnail: 'https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Pharaon Egyptien',
-    location: 'Caire, Egypte',
+    url: 'https://source.unsplash.com/1200x800/?lake,cameroon',
+    thumbnail: 'https://source.unsplash.com/400x300/?lake,cameroon',
+    title: 'Lac Ossa',
+    location: 'Lac Ossa, Cameroun',
     photographer: 'Amir Hassan',
     avatar: 'AH',
     likes: 3987,
     views: 25600,
-    category: 'culture',
+    category: 'nature',
     width: 800, height: 1000,
   },
   {
     id: '10',
-    url: 'https://images.pexels.com/photos/672532/pexels-photo-672532.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    thumbnail: 'https://images.pexels.com/photos/672532/pexels-photo-672532.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Lac de Montagne',
-    location: 'Lake Louise, Canada',
+    url: 'https://source.unsplash.com/1200x800/?waterfall,cameroon',
+    thumbnail: 'https://source.unsplash.com/400x300/?waterfall,cameroon',
+    title: 'Chutes de la Lobee',
+    location: 'Kribi, Cameroun',
     photographer: 'Olivia Smith',
     avatar: 'OS',
     likes: 6789,
@@ -190,23 +190,23 @@ const TRAVEL_PHOTOS: TravelPhoto[] = [
   },
   {
     id: '11',
-    url: 'https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    thumbnail: 'https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Cascade Mystique',
-    location: 'Iguazu, Argentine',
+    url: 'https://source.unsplash.com/1200x800/?market,cameroon',
+    thumbnail: 'https://source.unsplash.com/400x300/?market,cameroon',
+    title: 'Artisanat de Bafoussam',
+    location: 'Bafoussam, Cameroun',
     photographer: 'Carlos Mendez',
     avatar: 'CM',
     likes: 5210,
     views: 28900,
-    category: 'nature',
+    category: 'culture',
     width: 600, height: 900,
   },
   {
     id: '12',
-    url: 'https://images.pexels.com/photos/1179229/pexels-photo-1179229.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    thumbnail: 'https://images.pexels.com/photos/1179229/pexels-photo-1179229.jpeg?auto=compress&cs=tinysrgb&w=400',
+    url: 'https://source.unsplash.com/1200x800/?camping,cameroon',
+    thumbnail: 'https://source.unsplash.com/400x300/?camping,cameroon',
     title: 'Campement sous les Etoiles',
-    location: 'Dubai, EAU',
+    location: 'Mont Cameroun, Cameroun',
     photographer: 'Fatima Al-Rashid',
     avatar: 'FA',
     likes: 3456,
@@ -216,10 +216,10 @@ const TRAVEL_PHOTOS: TravelPhoto[] = [
   },
   {
     id: '13',
-    url: 'https://images.pexels.com/photos/1287460/pexels-photo-1287460.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    thumbnail: 'https://images.pexels.com/photos/1287460/pexels-photo-1287460.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Riziere Vietnam',
-    location: 'Sapa, Vietnam',
+    url: 'https://source.unsplash.com/1200x800/?coffee,cameroon',
+    thumbnail: 'https://source.unsplash.com/400x300/?coffee,cameroon',
+    title: 'Plantation de Cafe',
+    location: 'Dschang, Cameroun',
     photographer: 'Minh Nguyen',
     avatar: 'MN',
     likes: 7890,
@@ -229,23 +229,23 @@ const TRAVEL_PHOTOS: TravelPhoto[] = [
   },
   {
     id: '14',
-    url: 'https://images.pexels.com/photos/2335126/pexels-photo-2335126.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    thumbnail: 'https://images.pexels.com/photos/2335126/pexels-photo-2335126.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'New York Vibes',
-    location: 'Manhattan, USA',
+    url: 'https://source.unsplash.com/1200x800/?parc,cameroon',
+    thumbnail: 'https://source.unsplash.com/400x300/?parc,cameroon',
+    title: 'Parc National de Korup',
+    location: 'Korup, Cameroun',
     photographer: 'David Kim',
     avatar: 'DK',
     likes: 9234,
     views: 51200,
-    category: 'ville',
+    category: 'safari',
     width: 800, height: 1200,
   },
   {
     id: '15',
-    url: 'https://images.pexels.com/photos/209074/pexels-photo-209074.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    thumbnail: 'https://images.pexels.com/photos/209074/pexels-photo-209074.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Taj Mahal',
-    location: 'Agra, Inde',
+    url: 'https://source.unsplash.com/1200x800/?foumban,cameroon',
+    thumbnail: 'https://source.unsplash.com/400x300/?foumban,cameroon',
+    title: 'Chateau de Foumban',
+    location: 'Foumban, Cameroun',
     photographer: 'Priya Sharma',
     avatar: 'PS',
     likes: 8123,
@@ -255,10 +255,10 @@ const TRAVEL_PHOTOS: TravelPhoto[] = [
   },
   {
     id: '16',
-    url: 'https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    thumbnail: 'https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Dubai Skyline',
-    location: 'Dubai, EAU',
+    url: 'https://source.unsplash.com/1200x800/?douala,cameroon',
+    thumbnail: 'https://source.unsplash.com/400x300/?douala,cameroon',
+    title: 'Ville animée de Douala',
+    location: 'Douala, Cameroun',
     photographer: 'Ahmed Khan',
     avatar: 'AK',
     likes: 5678,
@@ -297,6 +297,7 @@ export function TravelPhotosGallery({ language, onBack }: TravelPhotosGalleryPro
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedPhoto, setSelectedPhoto] = useState<TravelPhoto | null>(null);
   const [likedPhotos, setLikedPhotos] = useState<Set<string>>(new Set());
+  const LOCAL_FALLBACK_IMAGE = '/image/photo1.jpg';
   const [savedPhotos, setSavedPhotos] = useState<Set<string>>(new Set());
   const [imageLoaded, setImageLoaded] = useState<Set<string>>(new Set());
   const [scrollY, setScrollY] = useState(0);
@@ -308,6 +309,7 @@ export function TravelPhotosGallery({ language, onBack }: TravelPhotosGalleryPro
   const [likedComments, setLikedComments] = useState<Set<string>>(new Set());
   const heroRef = useRef<HTMLDivElement>(null);
   const commentInputRef = useRef<HTMLTextAreaElement>(null);
+  const [heroSrc, setHeroSrc] = useState(LOCAL_FALLBACK_IMAGE);
 
   const filteredPhotos = selectedCategory === 'all'
     ? TRAVEL_PHOTOS
@@ -372,12 +374,12 @@ export function TravelPhotosGallery({ language, onBack }: TravelPhotosGalleryPro
         className="relative h-[60vh] min-h-[400px] overflow-hidden"
       >
         {/* Background image with parallax */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: 'url(https://images.pexels.com/photos/5833873/pexels-photo-5833873.jpeg?auto=compress&cs=tinysrgb&w=1920)',
-            transform: `translateY(${scrollY * 0.3}px) scale(1.1)`,
-          }}
+        <img
+          src={heroSrc}
+          alt="Kribi, Cameroon"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ transform: `translateY(${scrollY * 0.3}px) scale(1.1)` }}
+          onError={() => { if (heroSrc !== LOCAL_FALLBACK_IMAGE) setHeroSrc(LOCAL_FALLBACK_IMAGE); }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#007A5E]/40 via-[#CE1126]/20 to-[#007A5E]/70" />
 
@@ -499,6 +501,11 @@ export function TravelPhotosGallery({ language, onBack }: TravelPhotosGalleryPro
                     }`}
                     style={{ aspectRatio: `${photo.width}/${photo.height}` }}
                     onLoad={() => setImageLoaded(prev => new Set(prev).add(photo.id))}
+                    onError={(e) => {
+                      if (e.currentTarget.src !== LOCAL_FALLBACK_IMAGE) {
+                        e.currentTarget.src = LOCAL_FALLBACK_IMAGE;
+                      }
+                    }}
                     loading="lazy"
                   />
                   {!imageLoaded.has(photo.id) && (
@@ -638,6 +645,7 @@ export function TravelPhotosGallery({ language, onBack }: TravelPhotosGalleryPro
                   src={selectedPhoto.url}
                   alt={selectedPhoto.title}
                   className="w-full max-h-[65vh] md:max-h-[70vh] object-contain"
+                  onError={(e) => { if (e.currentTarget.src !== LOCAL_FALLBACK_IMAGE) e.currentTarget.src = LOCAL_FALLBACK_IMAGE; }}
                 />
               </div>
 

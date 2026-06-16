@@ -5,11 +5,11 @@ import type { Travel } from '../../shared/types';
 
 // Cover images for traveler hero sections
 const HERO_IMAGES = [
-  'https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg?auto=compress&cs=tinysrgb&w=1200',
-  'https://images.pexels.com/photos/2387871/pexels-photo-2387871.jpeg?auto=compress&cs=tinysrgb&w=1200',
-  'https://images.pexels.com/photos/3889843/pexels-photo-3889843.jpeg?auto=compress&cs=tinysrgb&w=1200',
-  'https://images.pexels.com/photos/4554561/pexels-photo-4554561.jpeg?auto=compress&cs=tinysrgb&w=1200',
-  'https://images.pexels.com/photos/2166559/pexels-photo-2166559.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'https://source.unsplash.com/1200x800/?yaounde,cameroon',
+  'https://source.unsplash.com/1200x800/?douala,cameroon',
+  'https://source.unsplash.com/1200x800/?kribi,cameroon',
+  'https://source.unsplash.com/1200x800/?mount%20cameroon',
+  'https://source.unsplash.com/1200x800/?waza,cameroon',
 ];
 
 function getHeroImage(id: string): string {

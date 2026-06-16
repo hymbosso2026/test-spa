@@ -324,7 +324,9 @@ export default function App() {
       </header>
 
       <main key={page} className="min-h-screen animate-fade-in">
-        <div className="max-w-7xl mx-auto px-4 py-6" />
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <MusicPlayer language={language} />
+        </div>
 
         {page === 'traveler' && (
           <TravelerProfile
@@ -405,12 +407,6 @@ export default function App() {
         </>
       )}
       </main>
-
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 border-t border-gray-200 shadow-xl backdrop-blur-xl py-4">
-        <div className="max-w-7xl mx-auto px-4">
-          <MusicPlayer language={language} />
-        </div>
-      </div>
     </div>
   );
 }

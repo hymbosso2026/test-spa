@@ -17,18 +17,18 @@ interface TravelerGalleryProps {
   onViewTraveler: (userId: string, userName: string) => void;
 }
 
-// Beautiful travel destination cover images from Pexels
+// Beautiful Cameroon travel destination cover images
 const COVER_IMAGES = [
-  'https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg?auto=compress&cs=tinysrgb&w=600',
-  'https://images.pexels.com/photos/1000653/pexels-photo-1000653.jpeg?auto=compress&cs=tinysrgb&w=600',
-  'https://images.pexels.com/photos/2387871/pexels-photo-2387871.jpeg?auto=compress&cs=tinysrgb&w=600',
-  'https://images.pexels.com/photos/3250444/pexels-photo-3250444.jpeg?auto=compress&cs=tinysrgb&w=600',
-  'https://images.pexels.com/photos/3889843/pexels-photo-3889843.jpeg?auto=compress&cs=tinysrgb&w=600',
-  'https://images.pexels.com/photos/4554561/pexels-photo-4554561.jpeg?auto=compress&cs=tinysrgb&w=600',
-  'https://images.pexels.com/photos/2166559/pexels-photo-2166559.jpeg?auto=compress&cs=tinysrgb&w=600',
-  'https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=600',
-  'https://images.pexels.com/photos/672532/pexels-photo-672532.jpeg?auto=compress&cs=tinysrgb&w=600',
-  'https://images.pexels.com/photos/3155667/pexels-photo-3155667.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://source.unsplash.com/600x600/?yaounde,cameroon',
+  'https://source.unsplash.com/600x600/?douala,cameroon',
+  'https://source.unsplash.com/600x600/?kribi,cameroon',
+  'https://source.unsplash.com/600x600/?limbe,cameroon',
+  'https://source.unsplash.com/600x600/?waza%20national%20park',
+  'https://source.unsplash.com/600x600/?bamenda,cameroon',
+  'https://source.unsplash.com/600x600/?mount%20cameroon',
+  'https://source.unsplash.com/600x600/?marche,cameroon',
+  'https://source.unsplash.com/600x600/?foumban,cameroon',
+  'https://source.unsplash.com/600x600/?cameroun,tradition',
 ];
 
 const DEFAULT_CAM_IMAGES = [
@@ -39,6 +39,8 @@ const DEFAULT_CAM_IMAGES = [
   'https://source.unsplash.com/800x600/?waza%20national%20park',
   'https://source.unsplash.com/800x600/?bamenda,cameroon',
 ];
+
+const LOCAL_FALLBACK_IMAGE = '/image/photo1.jpg';
 
 function getCoverImage(userId: string): string {
   let hash = 0;
@@ -101,7 +103,12 @@ export function TravelerGallery({ language, travels, onViewTraveler }: TravelerG
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {DEFAULT_CAM_IMAGES.map((src, i) => (
                 <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg">
-                  <img src={src} alt={`Cameroon ${i}`} className="w-full h-56 object-cover" />
+                  <img
+                    src={src}
+                    alt={`Cameroon ${i}`}
+                    className="w-full h-56 object-cover"
+                    onError={(e) => { if (e.currentTarget.src !== LOCAL_FALLBACK_IMAGE) e.currentTarget.src = LOCAL_FALLBACK_IMAGE; }}
+                  />
                 </div>
               ))}
             </div>
@@ -121,6 +128,7 @@ export function TravelerGallery({ language, travels, onViewTraveler }: TravelerG
                     src={getCoverImage(traveler.user_id)}
                     alt="Travel destination"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    onError={(e) => { if (e.currentTarget.src !== LOCAL_FALLBACK_IMAGE) e.currentTarget.src = LOCAL_FALLBACK_IMAGE; }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 

@@ -11,18 +11,18 @@ interface OverviewProps {
   onViewTraveler: (userId: string, userName: string) => void;
 }
 
-// Beautiful travel destination images from Pexels
+// Beautiful Cameroon travel images
 const TRAVEL_IMAGES = [
-  'https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg?auto=compress&cs=tinysrgb&w=800',
-  'https://images.pexels.com/photos/1000653/pexels-photo-1000653.jpeg?auto=compress&cs=tinysrgb&w=800',
-  'https://images.pexels.com/photos/2387871/pexels-photo-2387871.jpeg?auto=compress&cs=tinysrgb&w=800',
-  'https://images.pexels.com/photos/3250444/pexels-photo-3250444.jpeg?auto=compress&cs=tinysrgb&w=800',
-  'https://images.pexels.com/photos/3889843/pexels-photo-3889843.jpeg?auto=compress&cs=tinysrgb&w=800',
-  'https://images.pexels.com/photos/4554561/pexels-photo-4554561.jpeg?auto=compress&cs=tinysrgb&w=800',
-  'https://images.pexels.com/photos/2166559/pexels-photo-2166559.jpeg?auto=compress&cs=tinysrgb&w=800',
-  'https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=800',
-  'https://images.pexels.com/photos/672532/pexels-photo-672532.jpeg?auto=compress&cs=tinysrgb&w=800',
-  'https://images.pexels.com/photos/3155667/pexels-photo-3155667.jpeg?auto=compress&cs=tinysrgb&w=800',
+  'https://source.unsplash.com/800x800/?yaounde,cameroon',
+  'https://source.unsplash.com/800x800/?douala,cameroon',
+  'https://source.unsplash.com/800x800/?kribi,cameroon',
+  'https://source.unsplash.com/800x800/?waza,cameroon',
+  'https://source.unsplash.com/800x800/?mount%20cameroon',
+  'https://source.unsplash.com/800x800/?bamenda,cameroon',
+  'https://source.unsplash.com/800x800/?limbe,cameroon',
+  'https://source.unsplash.com/800x800/?foumban,cameroon',
+  'https://source.unsplash.com/800x800/?marche,cameroon',
+  'https://source.unsplash.com/800x800/?festival,cameroon',
 ];
 
 function getTravelImage(travelId: string): string {

@@ -36,6 +36,7 @@ export function SpotboardGallery({
     'https://source.unsplash.com/800x600/?waza,park',
     'https://source.unsplash.com/800x600/?cameroon,mountain',
   ];
+  const LOCAL_FALLBACK_IMAGE = '/image/photo1.jpg';
 
   useEffect(() => {
     if (videoRef.current && playingVideo) {
@@ -120,7 +121,12 @@ export function SpotboardGallery({
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {DEFAULT_CAMEROON_IMAGES.map((src, i) => (
                 <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg">
-                  <img src={src} alt={`Cameroon ${i}`} className="w-full h-48 object-cover" />
+                  <img
+                src={src}
+                alt={`Cameroon ${i}`}
+                className="w-full h-48 object-cover"
+                onError={(e) => { if (e.currentTarget.src !== LOCAL_FALLBACK_IMAGE) e.currentTarget.src = LOCAL_FALLBACK_IMAGE; }}
+              />
                 </div>
               ))}
             </div>
@@ -144,6 +150,7 @@ export function SpotboardGallery({
                         src={photo.url}
                         alt={photo.location || photo.caption || 'Photo'}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        onError={(e) => { if (e.currentTarget.src !== LOCAL_FALLBACK_IMAGE) e.currentTarget.src = LOCAL_FALLBACK_IMAGE; }}
                       />
                     ) : (
                       <div className="absolute inset-0 bg-gradient-to-br from-[#007A5E] via-[#CE1126] to-[#FCD116] flex items-center justify-center">
