@@ -393,3 +393,9 @@ MIT
 ## Auteur
 
 Nkwemi Keyim Hymbosso - NKY Travel
+
+## Professor Checklist
+
+La checklist destinée au professeur est disponible ici: [CHECKLIST.md](CHECKLIST.md)
+
+Veuillez ouvrir la checklist pour suivre les étapes de vérification rapides.
